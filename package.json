@@ -1,0 +1,13 @@
+{
+  "name": "fame-web",
+  "version": "1.0.0",
+  "description": "Fame Web Static Website",
+  "scripts": {
+    "dev": "npx live-server . --port=3000 --open=index.html",
+    "start": "npx live-server . --port=3000 --open=index.html",
+    "serve": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
