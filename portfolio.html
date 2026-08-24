@@ -54,18 +54,175 @@
   <!-- PORTFOLIO GRID WITH FILTERS -->
   <section class="section">
     <div class="container">
-      <div class="portfolio-filter">
-        <button class="filter-btn active" data-filter="all">All Projects (6)</button>
-        <button class="filter-btn" data-filter="brand">Brand Identity</button>
-        <button class="filter-btn" data-filter="performance">Performance Media</button>
-        <button class="filter-btn" data-filter="video">Video & 3D</button>
-        <button class="filter-btn" data-filter="web">Web & Digital</button>
+      <div class="portfolio-filter-wrapper">
+        <!-- City / Location Filters -->
+        <div class="portfolio-filter-group">
+          <span class="filter-group-label">Region / City:</span>
+          <button class="filter-btn city-btn active" data-city-filter="all">All Locations (11)</button>
+          <button class="filter-btn city-btn" data-city-filter="riyadh">📍 Riyadh (الرياض)</button>
+          <button class="filter-btn city-btn" data-city-filter="jeddah">📍 Jeddah (جدة)</button>
+          <button class="filter-btn city-btn" data-city-filter="makkah">📍 Makkah (مكة المكرمة)</button>
+          <button class="filter-btn city-btn" data-city-filter="abha">📍 Abha (أبها)</button>
+          <button class="filter-btn city-btn" data-city-filter="alula">📍 AlUla (العلا)</button>
+          <button class="filter-btn city-btn" data-city-filter="global">🌐 Global</button>
+        </div>
+
+        <!-- Capability Filters -->
+        <div class="portfolio-filter-group">
+          <span class="filter-group-label">Capability:</span>
+          <button class="filter-btn active" data-filter="all">All Capabilities</button>
+          <button class="filter-btn" data-filter="brand">Brand Identity</button>
+          <button class="filter-btn" data-filter="performance">Performance Media</button>
+          <button class="filter-btn" data-filter="video">Video & 3D</button>
+          <button class="filter-btn" data-filter="web">Web & Digital</button>
+        </div>
       </div>
 
       <div class="portfolio-grid">
-        <!-- 1 -->
-        <div class="portfolio-card" data-category="brand">
+        <!-- SAUDI 1: MAKKAH -->
+        <div class="portfolio-card" data-category="brand" data-city="makkah">
           <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">📍 Makkah • مكة المكرمة</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #000000);">
+              <span>RAWABI MAKKAH</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Brand Identity & Culture</span>
+              <span class="portfolio-result-badge">+420% Inquiries</span>
+            </div>
+            <h3 class="portfolio-title">Makkah Hospitality & Heritage Real Estate</h3>
+            <p class="portfolio-desc">Comprehensive brand positioning, luxury multilingual collateral, and digital acquisition campaigns tailored for international pilgrims and high-net-worth real estate investors.</p>
+            <div class="portfolio-metrics">
+              <div class="p-metric">
+                <span class="p-metric-val">35M+</span>
+                <span class="p-metric-lbl">MENA Campaign Reach</span>
+              </div>
+              <div class="p-metric">
+                <span class="p-metric-val">+420%</span>
+                <span class="p-metric-lbl">Direct Investor Leads</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAUDI 2: JEDDAH -->
+        <div class="portfolio-card" data-category="video" data-city="jeddah">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">📍 Jeddah • جدة</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #1F31A4);">
+              <span>JEDDAH CORNICHE</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Video & Experiential 3D</span>
+              <span class="portfolio-result-badge">180K+ Attendees</span>
+            </div>
+            <h3 class="portfolio-title">Red Sea Luxury Waterfront Festival</h3>
+            <p class="portfolio-desc">High-production cinematic 3D CGI visuals, viral TikTok & Snapchat AR lenses, and full-funnel ticketing media scaling for Jeddah's marquee coastal festival.</p>
+            <div class="portfolio-metrics">
+              <div class="p-metric">
+                <span class="p-metric-val">180,000+</span>
+                <span class="p-metric-lbl">Passes Sold</span>
+              </div>
+              <div class="p-metric">
+                <span class="p-metric-val">4.8x</span>
+                <span class="p-metric-lbl">Ad Spend Return (ROAS)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAUDI 3: RIYADH -->
+        <div class="portfolio-card" data-category="performance" data-city="riyadh">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">📍 Riyadh • الرياض</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #FFB703);">
+              <span>KAFD RIYADH</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Performance Media</span>
+              <span class="portfolio-result-badge">240K+ Accounts</span>
+            </div>
+            <h3 class="portfolio-title">KAFD Fintech Enterprise Launch</h3>
+            <p class="portfolio-desc">Algorithmic multi-channel paid acquisition engine across Google Search, YouTube Ads, and LinkedIn targeting Riyadh's fast-growing corporate and investment sector.</p>
+            <div class="portfolio-metrics">
+              <div class="p-metric">
+                <span class="p-metric-val">$14.2M</span>
+                <span class="p-metric-lbl">Enterprise Pipeline</span>
+              </div>
+              <div class="p-metric">
+                <span class="p-metric-val">-38%</span>
+                <span class="p-metric-lbl">Cost Per Verified Lead</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAUDI 4: ABHA -->
+        <div class="portfolio-card" data-category="brand" data-city="abha">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">📍 Abha • أبها</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FFB703, #1F31A4);">
+              <span>ASIR HIGHLANDS</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Brand Identity & Tourism</span>
+              <span class="portfolio-result-badge">+310% Bookings</span>
+            </div>
+            <h3 class="portfolio-title">Asir Mountain & Soudah Eco-Resorts</h3>
+            <p class="portfolio-desc">Complete brand identity, cultural narrative, and breathtaking cinematic teaser campaign capturing the cool mountain peaks and rich heritage of Abha and Asir region.</p>
+            <div class="portfolio-metrics">
+              <div class="p-metric">
+                <span class="p-metric-val">+310%</span>
+                <span class="p-metric-lbl">Summer Inbound Stays</span>
+              </div>
+              <div class="p-metric">
+                <span class="p-metric-val">12.5M</span>
+                <span class="p-metric-lbl">Organic Video Views</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAUDI 5: ALULA -->
+        <div class="portfolio-card" data-category="web" data-city="alula">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">📍 AlUla • العلا</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #000000);">
+              <span>ALULA LIVING MUSEUM</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Web & Digital Experience</span>
+              <span class="portfolio-result-badge">98% Sentiment</span>
+            </div>
+            <h3 class="portfolio-title">AlUla Heritage & Luxury Living Portal</h3>
+            <p class="portfolio-desc">Immersive 3D interactive web platform with high-speed virtual tours, curated luxury itinerary booking, and seamless multi-currency checkout engine.</p>
+            <div class="portfolio-metrics">
+              <div class="p-metric">
+                <span class="p-metric-val">2.4M</span>
+                <span class="p-metric-lbl">Global Portal Visits</span>
+              </div>
+              <div class="p-metric">
+                <span class="p-metric-val">0.6s</span>
+                <span class="p-metric-lbl">Fast Page Speed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GLOBAL 1 -->
+        <div class="portfolio-card" data-category="brand" data-city="global">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge">🌐 Global</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #0b0e1a);">
               <span>AURA LUXURY</span>
             </div>
@@ -90,9 +247,10 @@
           </div>
         </div>
 
-        <!-- 2 -->
-        <div class="portfolio-card" data-category="performance">
+        <!-- GLOBAL 2 -->
+        <div class="portfolio-card" data-category="performance" data-city="global">
           <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge">🌐 Global</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #1F31A4);">
               <span>NEXUS FINTECH</span>
             </div>
@@ -117,9 +275,10 @@
           </div>
         </div>
 
-        <!-- 3 -->
-        <div class="portfolio-card" data-category="video">
+        <!-- GLOBAL 3 -->
+        <div class="portfolio-card" data-category="video" data-city="global">
           <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge">🌐 Global</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FFB703, #000000);">
               <span>CYBERION TECH</span>
             </div>
@@ -144,9 +303,10 @@
           </div>
         </div>
 
-        <!-- 4 -->
-        <div class="portfolio-card" data-category="web">
+        <!-- GLOBAL 4 -->
+        <div class="portfolio-card" data-category="web" data-city="global">
           <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge">🌐 Global</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #12162a, #1F31A4);">
               <span>SOLARIS ENERGY</span>
             </div>
@@ -171,9 +331,10 @@
           </div>
         </div>
 
-        <!-- 5 -->
-        <div class="portfolio-card" data-category="performance">
+        <!-- GLOBAL 5 -->
+        <div class="portfolio-card" data-category="performance" data-city="global">
           <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge">🌐 Global</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #FFB703);">
               <span>VORTEX BEVERAGE</span>
             </div>
@@ -198,9 +359,10 @@
           </div>
         </div>
 
-        <!-- 6 -->
-        <div class="portfolio-card" data-category="brand">
+        <!-- GLOBAL 6 -->
+        <div class="portfolio-card" data-category="brand" data-city="global">
           <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge">🌐 Global</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #FB8500);">
               <span>NOVA WELLNESS</span>
             </div>

@@ -133,39 +133,75 @@ function initRoiEstimator() {
 }
 
 /* --------------------------------------------------------------------------
-   4. PORTFOLIO CATEGORY FILTERING
+   4. PORTFOLIO DUAL FILTERING (CITY & CATEGORY)
    -------------------------------------------------------------------------- */
 function initPortfolioFilter() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cityBtns = document.querySelectorAll('[data-city-filter]');
+  const categoryBtns = document.querySelectorAll('[data-filter]');
   const portfolioItems = document.querySelectorAll('.portfolio-card');
 
-  if (!filterBtns.length || !portfolioItems.length) return;
+  if (!portfolioItems.length) return;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  let activeCity = 'all';
+  let activeCategory = 'all';
 
-      const filter = btn.getAttribute('data-filter');
+  const applyFilters = () => {
+    portfolioItems.forEach(item => {
+      const itemCity = item.getAttribute('data-city') || 'global';
+      const itemCategory = item.getAttribute('data-category') || 'all';
 
-      portfolioItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          item.style.display = 'flex';
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-          }, 50);
-        } else {
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            item.style.display = 'none';
-          }, 300);
-        }
+      const matchCity = (activeCity === 'all') || (itemCity === activeCity);
+      const matchCategory = (activeCategory === 'all') || (itemCategory === activeCategory);
+
+      if (matchCity && matchCategory) {
+        item.style.display = 'flex';
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'scale(1)';
+        }, 50);
+      } else {
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          item.style.display = 'none';
+        }, 250);
+      }
+    });
+  };
+
+  // City filter event listeners
+  if (cityBtns.length) {
+    cityBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        cityBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCity = btn.getAttribute('data-city-filter');
+        applyFilters();
       });
     });
-  });
+  }
+
+  // Category filter event listeners
+  if (categoryBtns.length) {
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.getAttribute('data-filter');
+        applyFilters();
+      });
+    });
+  }
+
+  // Check URL query param for deep linking (e.g. portfolio.html?city=makkah)
+  const urlParams = new URLSearchParams(window.location.search);
+  const cityParam = urlParams.get('city');
+  if (cityParam && cityBtns.length) {
+    const targetCityBtn = Array.from(cityBtns).find(b => b.getAttribute('data-city-filter') === cityParam.toLowerCase());
+    if (targetCityBtn) {
+      targetCityBtn.click();
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------
