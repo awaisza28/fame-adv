@@ -6,7 +6,47 @@
   <title>Portfolio & Case Studies — FAME Advertising Company</title>
   <meta name="description" content="Explore verified case studies and brand transformations engineered by FAME Advertising Company across global industries.">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <style>
+    .container.container-wide,
+    .container-wide {
+      width: 95% !important;
+      max-width: 1800px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: clamp(1rem, 3.5vw, 3.5rem) !important;
+      padding-right: clamp(1rem, 3.5vw, 3.5rem) !important;
+    }
+    .portfolio-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)) !important;
+      gap: 3rem 2.5rem !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+    }
+    .portfolio-img-wrap,
+    .portfolio-card-slider {
+      position: relative !important;
+      width: 100% !important;
+      height: 480px !important;
+      min-height: 440px !important;
+      overflow: hidden !important;
+      background: #080b14 !important;
+    }
+    .card-slide img,
+    .portfolio-img-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    .card-slide-tag,
+    .portfolio-desc,
+    .portfolio-result-badge,
+    .portfolio-metrics {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -42,29 +82,29 @@
   <section class="page-hero">
     <div class="container">
       <div class="page-hero-content">
-        <div class="badge">Proven Track Record</div>
-        <h1>Our <span class="gradient-text">Case Studies</span> & Brand Work</h1>
-        <p class="hero-subtitle">
-          Real numbers, radical creative execution, and undeniable business growth delivered for visionary brands.
-        </p>
+        <div class="reveal-mask reveal-delay-1"><h1>Our <span class="gradient-text">Case Studies</span> & Brand Work</h1></div>
+        <div class="reveal-mask reveal-delay-2">
+          <p class="hero-subtitle">
+            Real numbers, radical creative execution, and undeniable business growth delivered for visionary brands.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- PORTFOLIO GRID WITH FILTERS -->
-  <section class="section">
-    <div class="container">
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container container-wide">
       <div class="portfolio-filter-wrapper">
         <!-- City / Location Filters -->
         <div class="portfolio-filter-group">
           <span class="filter-group-label">Region / City:</span>
-          <button class="filter-btn city-btn active" data-city-filter="all">All Locations (11)</button>
-          <button class="filter-btn city-btn" data-city-filter="riyadh">📍 Riyadh (الرياض)</button>
-          <button class="filter-btn city-btn" data-city-filter="jeddah">📍 Jeddah (جدة)</button>
-          <button class="filter-btn city-btn" data-city-filter="makkah">📍 Makkah (مكة المكرمة)</button>
-          <button class="filter-btn city-btn" data-city-filter="abha">📍 Abha (أبها)</button>
-          <button class="filter-btn city-btn" data-city-filter="alula">📍 AlUla (العلا)</button>
-          <button class="filter-btn city-btn" data-city-filter="global">🌐 Global</button>
+          <button class="filter-btn city-btn active" data-city-filter="all">All Locations</button>
+          <button class="filter-btn city-btn" data-city-filter="riyadh">Riyadh (الرياض)</button>
+          <button class="filter-btn city-btn" data-city-filter="jeddah">Jeddah (جدة)</button>
+          <button class="filter-btn city-btn" data-city-filter="makkah">Makkah (مكة المكرمة)</button>
+          <button class="filter-btn city-btn" data-city-filter="abha">Abha (أبها)</button>
+          <button class="filter-btn city-btn" data-city-filter="alula">AlUla (العلا)</button>
         </div>
 
         <!-- Capability Filters -->
@@ -76,314 +116,452 @@
           <button class="filter-btn" data-filter="video">Video & 3D</button>
           <button class="filter-btn" data-filter="web">Web & Digital</button>
         </div>
+
+        <!-- Makkah Subcategory Filters -->
+        <div class="portfolio-filter-group" id="makkahSubFilter" style="display: flex;">
+          <span class="filter-group-label">Makkah Projects:</span>
+          <button class="filter-btn sub-filter-btn active" data-sub-filter="all">All Makkah (6)</button>
+          <button class="filter-btn sub-filter-btn" data-sub-filter="temporary-signage">Haram Temporary Signage (اللوحات المؤقتة)</button>
+          <button class="filter-btn sub-filter-btn" data-sub-filter="mataf">Mataf Expansion (المطاف)</button>
+          <button class="filter-btn sub-filter-btn" data-sub-filter="masaa">Masa'a Expansion (المسعى)</button>
+          <button class="filter-btn sub-filter-btn" data-sub-filter="harambuilding">Haram Main Building (مبنى الحرم)</button>
+          <button class="filter-btn sub-filter-btn" data-sub-filter="cuc">CUC Utilities (مجمع الخدمات)</button>
+          <button class="filter-btn sub-filter-btn" data-sub-filter="northbridges">North Bridges (الجسور الشمالية)</button>
+        </div>
       </div>
 
       <div class="portfolio-grid">
-        <!-- SAUDI 1: MAKKAH -->
-        <div class="portfolio-card" data-category="brand" data-city="makkah">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge saudi">📍 Makkah • مكة المكرمة</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #000000);">
-              <span>RAWABI MAKKAH</span>
+        <!-- CATEGORY: HARAM TEMPORARY & SEASONAL SIGNAGE (CONTAINS ALL 5 PHOTOS IN CARD SLIDER & MODAL) -->
+        <div class="portfolio-card" data-category="brand" data-city="makkah" data-subcategory="temporary-signage">
+          <div class="portfolio-card-slider" id="haramCardSlider">
+            <span class="portfolio-city-badge saudi">Makkah • اللوحات الموسمية والمؤقتة</span>
+            
+            <div class="card-slider-track">
+              <!-- Slide 1 -->
+              <div class="card-slide active" data-index="0">
+                <img src="assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg" alt="King Abdul Aziz Gate (No. 01) & Ajyad Gate (No. 03)">
+                <div class="card-slide-tag">1/5 • King Abdul Aziz & Ajyad Gates</div>
+              </div>
+              <!-- Slide 2 -->
+              <div class="card-slide" data-index="1">
+                <img src="assets/haram-seasonal/haram-stairs-toilets.jpg" alt="Stairs 7/B & Female Restrooms Header Wayfinding">
+                <div class="card-slide-tag">2/5 • Facility & Restroom Access</div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="card-slide" data-index="2">
+                <img src="assets/haram-seasonal/haram-salam-gate.jpg" alt="To As-Salaam Gate Trilingual Panels">
+                <div class="card-slide-tag">3/5 • Trilingual As-Salaam Gate</div>
+              </div>
+              <!-- Slide 4 -->
+              <div class="card-slide" data-index="3">
+                <img src="assets/haram-seasonal/haram-king-fahd-expansion.jpg" alt="King Fahd Gate (No. 79) & Third Saudi Expansion">
+                <div class="card-slide-tag">4/5 • Third Saudi Expansion Connectors</div>
+              </div>
+              <!-- Slide 5 -->
+              <div class="card-slide" data-index="4">
+                <img src="assets/haram-seasonal/haram-highmast-directional.jpg" alt="Northern Courtyards & Al-Ghazzah High-Mast Directionals">
+                <div class="card-slide-tag">5/5 • Courtyard High-Mast Fingerposts</div>
+              </div>
             </div>
+
+            <!-- Slider Navigation Buttons -->
+            <button type="button" class="card-slider-btn prev-btn" aria-label="Previous photo">❮</button>
+            <button type="button" class="card-slider-btn next-btn" aria-label="Next photo">❯</button>
+            
+            <!-- Indicators / Thumb dots -->
+            <div class="card-slider-dots">
+              <button type="button" class="dot active" data-slide="0" aria-label="Slide 1"></button>
+              <button type="button" class="dot" data-slide="1" aria-label="Slide 2"></button>
+              <button type="button" class="dot" data-slide="2" aria-label="Slide 3"></button>
+              <button type="button" class="dot" data-slide="3" aria-label="Slide 4"></button>
+              <button type="button" class="dot" data-slide="4" aria-label="Slide 5"></button>
+            </div>
+
+            <button type="button" class="card-gallery-badge-btn open-haram-gallery" data-index="0" title="Expand Full Lightbox Gallery">
+              <span>5 Photos</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            </button>
           </div>
+
           <div class="portfolio-body">
             <div class="portfolio-meta">
-              <span class="portfolio-tag">Brand Identity & Culture</span>
-              <span class="portfolio-result-badge">+420% Inquiries</span>
+              <span class="portfolio-tag">Makkah • Seasonal Wayfinding</span>
             </div>
-            <h3 class="portfolio-title">Makkah Hospitality & Heritage Real Estate</h3>
-            <p class="portfolio-desc">Comprehensive brand positioning, luxury multilingual collateral, and digital acquisition campaigns tailored for international pilgrims and high-net-worth real estate investors.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">35M+</span>
-                <span class="p-metric-lbl">MENA Campaign Reach</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">+420%</span>
-                <span class="p-metric-lbl">Direct Investor Leads</span>
-              </div>
-            </div>
+            <h3 class="portfolio-title">Haram Grand Mosque — Pilgrim Wayfinding Systems</h3>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-haram-gallery" data-index="0">
+              <span>View Full Gallery (5 Photos)</span>
+              <span class="arrow-glyph">›</span>
+            </a>
           </div>
         </div>
 
-        <!-- SAUDI 2: JEDDAH -->
-        <div class="portfolio-card" data-category="video" data-city="jeddah">
+        <!-- MAKKAH 1: MATAF -->
+        <div class="portfolio-card" data-category="video" data-city="makkah" data-subcategory="mataf">
           <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge saudi">📍 Jeddah • جدة</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #1F31A4);">
-              <span>JEDDAH CORNICHE</span>
+            <span class="portfolio-city-badge saudi">Makkah • مشروع المطاف</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #FFB703);">
+              <span>MATAF EXPANSION</span>
             </div>
           </div>
           <div class="portfolio-body">
             <div class="portfolio-meta">
-              <span class="portfolio-tag">Video & Experiential 3D</span>
-              <span class="portfolio-result-badge">180K+ Attendees</span>
+              <span class="portfolio-tag">Makkah • Pilgrim Flow Simulation</span>
             </div>
-            <h3 class="portfolio-title">Red Sea Luxury Waterfront Festival</h3>
-            <p class="portfolio-desc">High-production cinematic 3D CGI visuals, viral TikTok & Snapchat AR lenses, and full-funnel ticketing media scaling for Jeddah's marquee coastal festival.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">180,000+</span>
-                <span class="p-metric-lbl">Passes Sold</span>
+            <h3 class="portfolio-title">Mataf Expansion Capacity & Pilgrim Flow Simulation</h3>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- MAKKAH 2: MASA'A -->
+        <div class="portfolio-card" data-category="brand" data-city="makkah" data-subcategory="masaa">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">Makkah • مشروع المسعى</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #000000);">
+              <span>MASA'A EXPANSION</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Makkah • Multi-Tier Wayfinding</span>
+            </div>
+            <h3 class="portfolio-title">Masa'a Expansion Multi-Tier Directional Guidance</h3>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- MAKKAH 3: HARAM BUILDING -->
+        <div class="portfolio-card" data-category="web" data-city="makkah" data-subcategory="harambuilding">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">Makkah • مبنى الحرم المكي</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #000000);">
+              <span>HARAM MAIN BUILDING</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Makkah • Architectural Documentation</span>
+            </div>
+            <h3 class="portfolio-title">Grand Haram Main Building Architecture Documentation</h3>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- MAKKAH 4: CUC (CENTRAL UTILITY COMPLEX) -->
+        <div class="portfolio-card" data-category="performance" data-city="makkah" data-subcategory="cuc">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">Makkah • مجمع CUC</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #000000, #FB8500);">
+              <span>CUC UTILITY COMPLEX</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Makkah • Utility Infrastructure</span>
+            </div>
+            <h3 class="portfolio-title">Central Utility Complex (CUC) Technical Data Showcase</h3>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- MAKKAH 5: NORTH BRIDGES -->
+        <div class="portfolio-card" data-category="video" data-city="makkah" data-subcategory="northbridges">
+          <div class="portfolio-img-wrap">
+            <span class="portfolio-city-badge saudi">Makkah • الجسور الشمالية</span>
+            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #FB8500);">
+              <span>NORTH BRIDGES</span>
+            </div>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Makkah • Transit Corridors</span>
+            </div>
+            <h3 class="portfolio-title">North Bridges & Pedestrian Transit Corridors</h3>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SAUDI 2A: JEDDAH (DALLAH AL-BARAKAH - SALEH KAMEL BUSINESS CENTER HEADQUARTERS & PARKING WAYFINDING) -->
+        <div class="portfolio-card" data-category="brand" data-city="jeddah" data-subcategory="dallah">
+          <div class="portfolio-card-slider" id="dallahCardSlider">
+            <span class="portfolio-city-badge saudi">Jeddah • دله البركة (مركز صالح كامل)</span>
+            
+            <div class="card-slider-track">
+              <!-- Slide 1 -->
+              <div class="card-slide active" data-gallery="dallah" data-index="0">
+                <img src="assets/Dallah  ALbarakah/WhatsApp Image 2023-09-25 at 12.05.09.jpg" alt="Saleh Kamel Business Center 3D Gold Monumental Facade Entrance">
+                <div class="card-slide-tag">1/8 • Saleh Kamel Business Center Monumental 3D Gold Facade</div>
               </div>
-              <div class="p-metric">
-                <span class="p-metric-val">4.8x</span>
-                <span class="p-metric-lbl">Ad Spend Return (ROAS)</span>
+              <!-- Slide 2 -->
+              <div class="card-slide" data-gallery="dallah" data-index="1">
+                <img src="assets/Dallah  ALbarakah/IMG-20230925-WA0028.jpg" alt="Night-Time Backlit Halo LED Illumination on Granite Facade">
+                <div class="card-slide-tag">2/8 • Night-Time Backlit Halo LED Illumination</div>
+              </div>
+              <!-- Slide 3 -->
+              <div class="card-slide" data-gallery="dallah" data-index="2">
+                <img src="assets/Dallah  ALbarakah/.30.jpg" alt="Dallah Albaraka Tower Elevation Monumental Gold Logo">
+                <div class="card-slide-tag">3/8 • Dallah Albaraka Tower Facade Monumental Gold Logo</div>
+              </div>
+              <!-- Slide 4 -->
+              <div class="card-slide" data-gallery="dallah" data-index="3">
+                <img src="assets/Dallah  ALbarakah/IMG-20230918-WA0040.jpg" alt="Dallah Albaraka Investment Holding Company Smart Intercom Wall Panel">
+                <div class="card-slide-tag">4/8 • Smart Intercom & Access Control Architectural Wall Panel</div>
+              </div>
+              <!-- Slide 5 -->
+              <div class="card-slide" data-gallery="dallah" data-index="4">
+                <img src="assets/Dallah  ALbarakah/IMG-20250108-WA0025.jpg" alt="Executive Parking Suspended Wayfinding (CEO / الرئيس التنفيذي)">
+                <div class="card-slide-tag">5/8 • Executive Parking Suspended Wayfinding (CEO / الرئيس التنفيذي)</div>
+              </div>
+              <!-- Slide 6 -->
+              <div class="card-slide" data-gallery="dallah" data-index="5">
+                <img src="assets/Dallah  ALbarakah/IMG-20230925-WA0021.jpg" alt="Parking Structure Wayfinding Pillar (Zone A / 11)">
+                <div class="card-slide-tag">6/8 • Parking Structure Monolith Column Wayfinding (Zone A / 11)</div>
+              </div>
+              <!-- Slide 7 -->
+              <div class="card-slide" data-gallery="dallah" data-index="6">
+                <img src="assets/Dallah  ALbarakah/IMG-20230925-WA0038.jpg" alt="Cylindrical Pillar Bronze Cladding Wayfinding (Zone C / 21)">
+                <div class="card-slide-tag">7/8 • Cylindrical Pillar Bronze Cladding (Zone C / 21)</div>
+              </div>
+              <!-- Slide 8 -->
+              <div class="card-slide" data-gallery="dallah" data-index="7">
+                <img src="assets/Dallah  ALbarakah/IMG-20250108-WA0023.jpg" alt="Women Lounge Architectural Bronze Wall Plaque (صالة السيدات)">
+                <div class="card-slide-tag">8/8 • VIP Lounge Architectural Bronze Wall Plaque (صالة السيدات)</div>
               </div>
             </div>
+
+            <!-- Slider Navigation Buttons -->
+            <button type="button" class="card-slider-btn prev-btn" aria-label="Previous photo">❮</button>
+            <button type="button" class="card-slider-btn next-btn" aria-label="Next photo">❯</button>
+            
+            <!-- Indicators / Thumb dots -->
+            <div class="card-slider-dots">
+              <button type="button" class="dot active" data-slide="0" aria-label="Slide 1"></button>
+              <button type="button" class="dot" data-slide="1" aria-label="Slide 2"></button>
+              <button type="button" class="dot" data-slide="2" aria-label="Slide 3"></button>
+              <button type="button" class="dot" data-slide="3" aria-label="Slide 4"></button>
+              <button type="button" class="dot" data-slide="4" aria-label="Slide 5"></button>
+              <button type="button" class="dot" data-slide="5" aria-label="Slide 6"></button>
+              <button type="button" class="dot" data-slide="6" aria-label="Slide 7"></button>
+              <button type="button" class="dot" data-slide="7" aria-label="Slide 8"></button>
+            </div>
+
+            <button type="button" class="card-gallery-badge-btn open-dallah-gallery" data-gallery="dallah" data-index="0" title="Expand Full Lightbox Gallery">
+              <span>16 Photos</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            </button>
+          </div>
+
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Jeddah • Corporate Headquarters</span>
+            </div>
+            <h3 class="portfolio-title">Saleh Kamel Business Center (Dallah Al-Barakah HQ)</h3>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-dallah-gallery" data-gallery="dallah" data-index="0">
+              <span>View Full Gallery (16 Photos)</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SAUDI 2B: JEDDAH (KING ABDULAZIZ INTERNATIONAL AIRPORT - KAIA AVIATION & TERMINAL WAYFINDING) -->
+        <div class="portfolio-card" data-category="brand" data-city="jeddah" data-subcategory="kaia">
+          <div class="portfolio-card-slider" id="kaiaCardSlider">
+            <span class="portfolio-city-badge saudi">Jeddah • مطار الملك عبدالعزيز الدولي</span>
+            
+            <div class="card-slider-track">
+              <!-- Slide 1 -->
+              <div class="card-slide active" data-gallery="kaia" data-index="0">
+                <img src="assets/KAIA/IMG_9164 (2) (Medium).jpg" alt="KAIA General Aviation Terminal Monumental Granite Entrance Signage">
+              </div>
+              <!-- Slide 2 -->
+              <div class="card-slide" data-gallery="kaia" data-index="1">
+                <img src="assets/KAIA/IMG_9161.jpg" alt="KAIA Terminal Concourse Suspended Directional Blade Sign">
+              </div>
+              <!-- Slide 3 -->
+              <div class="card-slide" data-gallery="kaia" data-index="2">
+                <img src="assets/KAIA/IMG_9212-2.jpg" alt="KAIA Overhead Suspended Arrival Wayfinding">
+              </div>
+              <!-- Slide 4 -->
+              <div class="card-slide" data-gallery="kaia" data-index="3">
+                <img src="assets/KAIA/IMG_9228-2.jpg" alt="KAIA Suspended Stainless Steel & Blue Acrylic Restrictive Wayfinding">
+              </div>
+              <!-- Slide 5 -->
+              <div class="card-slide" data-gallery="kaia" data-index="4">
+                <img src="assets/KAIA/IMG_9234 (2).jpg" alt="KAIA VIP Lounge Brass Wall Identification Plaque">
+              </div>
+              <!-- Slide 6 -->
+              <div class="card-slide" data-gallery="kaia" data-index="5">
+                <img src="assets/KAIA/KAIA SIGNS (2).jpg" alt="KAIA Airside & Perimeter Road Traffic Guidance Signage">
+              </div>
+            </div>
+
+            <!-- Slider Navigation Buttons -->
+            <button type="button" class="card-slider-btn prev-btn" aria-label="Previous photo">❮</button>
+            <button type="button" class="card-slider-btn next-btn" aria-label="Next photo">❯</button>
+            
+            <!-- Indicators / Thumb dots -->
+            <div class="card-slider-dots">
+              <button type="button" class="dot active" data-slide="0" aria-label="Slide 1"></button>
+              <button type="button" class="dot" data-slide="1" aria-label="Slide 2"></button>
+              <button type="button" class="dot" data-slide="2" aria-label="Slide 3"></button>
+              <button type="button" class="dot" data-slide="3" aria-label="Slide 4"></button>
+              <button type="button" class="dot" data-slide="5" aria-label="Slide 5"></button>
+              <button type="button" class="dot" data-slide="5" aria-label="Slide 6"></button>
+            </div>
+
+            <button type="button" class="card-gallery-badge-btn open-kaia-gallery" data-gallery="kaia" data-index="0" title="Expand Full Lightbox Gallery">
+              <span>6 Photos</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            </button>
+          </div>
+
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Jeddah • Aviation Transit</span>
+            </div>
+            <h3 class="portfolio-title">King Abdulaziz International Airport (KAIA)</h3>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-kaia-gallery" data-gallery="kaia" data-index="0">
+              <span>View Full Gallery (6 Photos)</span>
+              <span class="arrow-glyph">›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SAUDI 2B: JEDDAH (THE GALLERIA HOTEL - BESPOKE 5-STAR HOSPITALITY SIGNAGE & WAYFINDING) -->
+        <div class="portfolio-card" data-category="brand" data-city="jeddah" data-subcategory="galleria">
+          <div class="portfolio-card-slider" id="galleriaCardSlider">
+            <span class="portfolio-city-badge saudi">Jeddah • فندق غاليريا جدة</span>
+            
+            <div class="card-slider-track">
+              <!-- Slide 1 -->
+              <div class="card-slide active" data-gallery="galleria" data-index="0">
+                <img src="assets/galleria hotel/WhatsApp Image 2023-09-18 at 14.38.53.jpg" alt="The Galleria Hotel Jeddah Suspended Elevator Wayfinding Blade">
+              </div>
+              <!-- Slide 2 -->
+              <div class="card-slide" data-gallery="galleria" data-index="1">
+                <img src="assets/galleria hotel/IMG-20230925-WA0095.jpg" alt="The Galleria Hotel Level 2 Directional Wayfinding & Room 2253 Plaque">
+              </div>
+              <!-- Slide 3 -->
+              <div class="card-slide" data-gallery="galleria" data-index="2">
+                <img src="assets/galleria hotel/IMG-20230918-WA0056.jpg" alt="Gentlemen Restroom Sign on Italian Marble Wall Panelling">
+              </div>
+              <!-- Slide 4 -->
+              <div class="card-slide" data-gallery="galleria" data-index="3">
+                <img src="assets/galleria hotel/IMG-20230925-WA0070.jpg" alt="Female Restroom Architectural Sign on Patterned Wallpaper">
+              </div>
+              <!-- Slide 5 -->
+              <div class="card-slide" data-gallery="galleria" data-index="4">
+                <img src="assets/galleria hotel/IMG-20230925-WA0066.jpg" alt="Male Restroom Architectural Signage Plate">
+              </div>
+              <!-- Slide 6 -->
+              <div class="card-slide" data-gallery="galleria" data-index="5">
+                <img src="assets/galleria hotel/IMG-20230925-WA0069.jpg" alt="Elevator Fire Safety Warning Compliance Plate">
+              </div>
+            </div>
+
+            <!-- Slider Navigation Buttons -->
+            <button type="button" class="card-slider-btn prev-btn" aria-label="Previous photo">❮</button>
+            <button type="button" class="card-slider-btn next-btn" aria-label="Next photo">❯</button>
+            
+            <!-- Indicators / Thumb dots -->
+            <div class="card-slider-dots">
+              <button type="button" class="dot active" data-slide="0" aria-label="Slide 1"></button>
+              <button type="button" class="dot" data-slide="1" aria-label="Slide 2"></button>
+              <button type="button" class="dot" data-slide="2" aria-label="Slide 3"></button>
+              <button type="button" class="dot" data-slide="3" aria-label="Slide 4"></button>
+              <button type="button" class="dot" data-slide="4" aria-label="Slide 5"></button>
+              <button type="button" class="dot" data-slide="5" aria-label="Slide 6"></button>
+            </div>
+
+            <button type="button" class="card-gallery-badge-btn open-galleria-gallery" data-gallery="galleria" data-index="0" title="Expand Full Lightbox Gallery">
+              <span>6 Photos</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            </button>
+          </div>
+
+          <div class="portfolio-body">
+            <div class="portfolio-meta">
+              <span class="portfolio-tag">Jeddah • Luxury Hospitality</span>
+            </div>
+            <h3 class="portfolio-title">The Galleria Hotel Jeddah (Curio Collection by Hilton)</h3>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-galleria-gallery" data-gallery="galleria" data-index="0">
+              <span>View Full Gallery (6 Photos)</span>
+              <span class="arrow-glyph">›</span>
+            </a>
           </div>
         </div>
 
         <!-- SAUDI 3: RIYADH -->
         <div class="portfolio-card" data-category="performance" data-city="riyadh">
           <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge saudi">📍 Riyadh • الرياض</span>
+            <span class="portfolio-city-badge saudi">Riyadh • الرياض</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #FFB703);">
               <span>KAFD RIYADH</span>
             </div>
           </div>
           <div class="portfolio-body">
             <div class="portfolio-meta">
-              <span class="portfolio-tag">Performance Media</span>
-              <span class="portfolio-result-badge">240K+ Accounts</span>
+              <span class="portfolio-tag">Riyadh • Enterprise Scaling</span>
             </div>
             <h3 class="portfolio-title">KAFD Fintech Enterprise Launch</h3>
-            <p class="portfolio-desc">Algorithmic multi-channel paid acquisition engine across Google Search, YouTube Ads, and LinkedIn targeting Riyadh's fast-growing corporate and investment sector.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">$14.2M</span>
-                <span class="p-metric-lbl">Enterprise Pipeline</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">-38%</span>
-                <span class="p-metric-lbl">Cost Per Verified Lead</span>
-              </div>
-            </div>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
           </div>
         </div>
 
         <!-- SAUDI 4: ABHA -->
         <div class="portfolio-card" data-category="brand" data-city="abha">
           <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge saudi">📍 Abha • أبها</span>
+            <span class="portfolio-city-badge saudi">Abha • أبها</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FFB703, #1F31A4);">
               <span>ASIR HIGHLANDS</span>
             </div>
           </div>
           <div class="portfolio-body">
             <div class="portfolio-meta">
-              <span class="portfolio-tag">Brand Identity & Tourism</span>
-              <span class="portfolio-result-badge">+310% Bookings</span>
+              <span class="portfolio-tag">Abha • Tourism & Hospitality</span>
             </div>
             <h3 class="portfolio-title">Asir Mountain & Soudah Eco-Resorts</h3>
-            <p class="portfolio-desc">Complete brand identity, cultural narrative, and breathtaking cinematic teaser campaign capturing the cool mountain peaks and rich heritage of Abha and Asir region.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">+310%</span>
-                <span class="p-metric-lbl">Summer Inbound Stays</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">12.5M</span>
-                <span class="p-metric-lbl">Organic Video Views</span>
-              </div>
-            </div>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
           </div>
         </div>
 
         <!-- SAUDI 5: ALULA -->
         <div class="portfolio-card" data-category="web" data-city="alula">
           <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge saudi">📍 AlUla • العلا</span>
+            <span class="portfolio-city-badge saudi">AlUla • العلا</span>
             <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #000000);">
               <span>ALULA LIVING MUSEUM</span>
             </div>
           </div>
           <div class="portfolio-body">
             <div class="portfolio-meta">
-              <span class="portfolio-tag">Web & Digital Experience</span>
-              <span class="portfolio-result-badge">98% Sentiment</span>
+              <span class="portfolio-tag">AlUla • Experiential Tourism</span>
             </div>
             <h3 class="portfolio-title">AlUla Heritage & Luxury Living Portal</h3>
-            <p class="portfolio-desc">Immersive 3D interactive web platform with high-speed virtual tours, curated luxury itinerary booking, and seamless multi-currency checkout engine.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">2.4M</span>
-                <span class="p-metric-lbl">Global Portal Visits</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">0.6s</span>
-                <span class="p-metric-lbl">Fast Page Speed</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GLOBAL 1 -->
-        <div class="portfolio-card" data-category="brand" data-city="global">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge">🌐 Global</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #0b0e1a);">
-              <span>AURA LUXURY</span>
-            </div>
-          </div>
-          <div class="portfolio-body">
-            <div class="portfolio-meta">
-              <span class="portfolio-tag">Brand Identity</span>
-              <span class="portfolio-result-badge">+380% ROAS</span>
-            </div>
-            <h3 class="portfolio-title">Aura Luxury Goods Rebrand</h3>
-            <p class="portfolio-desc">High-fashion visual identity overhaul accompanied by high-converting UGC video campaigns that doubled Average Order Value.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">$4.8M</span>
-                <span class="p-metric-lbl">Attributed Revenue</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">-34%</span>
-                <span class="p-metric-lbl">Acquisition Cost</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GLOBAL 2 -->
-        <div class="portfolio-card" data-category="performance" data-city="global">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge">🌐 Global</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #1F31A4);">
-              <span>NEXUS FINTECH</span>
-            </div>
-          </div>
-          <div class="portfolio-body">
-            <div class="portfolio-meta">
-              <span class="portfolio-tag">Performance Media</span>
-              <span class="portfolio-result-badge">120K Installs</span>
-            </div>
-            <h3 class="portfolio-title">Nexus Global Fintech Acquisition</h3>
-            <p class="portfolio-desc">Aggressive YouTube and Meta App campaign scaling that acquired over 120,000 funded trading accounts in 6 months.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">120K+</span>
-                <span class="p-metric-lbl">Active Users</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">$1.45</span>
-                <span class="p-metric-lbl">Cost Per User</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GLOBAL 3 -->
-        <div class="portfolio-card" data-category="video" data-city="global">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge">🌐 Global</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FFB703, #000000);">
-              <span>CYBERION TECH</span>
-            </div>
-          </div>
-          <div class="portfolio-body">
-            <div class="portfolio-meta">
-              <span class="portfolio-tag">Video & 3D</span>
-              <span class="portfolio-result-badge">Award Winner</span>
-            </div>
-            <h3 class="portfolio-title">Cyberion AI Product Reveal</h3>
-            <p class="portfolio-desc">Futuristic 3D motion film and cinematic product demo that went viral across LinkedIn & Twitter, generating 45 enterprise leads.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">18M+</span>
-                <span class="p-metric-lbl">Organic Views</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">$12M</span>
-                <span class="p-metric-lbl">Pipeline Created</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GLOBAL 4 -->
-        <div class="portfolio-card" data-category="web" data-city="global">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge">🌐 Global</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #12162a, #1F31A4);">
-              <span>SOLARIS ENERGY</span>
-            </div>
-          </div>
-          <div class="portfolio-body">
-            <div class="portfolio-meta">
-              <span class="portfolio-tag">Web & Digital</span>
-              <span class="portfolio-result-badge">99/100 Speed</span>
-            </div>
-            <h3 class="portfolio-title">Solaris CleanTech Digital Flagship</h3>
-            <p class="portfolio-desc">High-speed web platform engineered with interactive solar ROI calculator, increasing inbound enterprise consult requests by 210%.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">+210%</span>
-                <span class="p-metric-lbl">Quote Requests</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">0.7s</span>
-                <span class="p-metric-lbl">Page Load Time</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GLOBAL 5 -->
-        <div class="portfolio-card" data-category="performance" data-city="global">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge">🌐 Global</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #FB8500, #FFB703);">
-              <span>VORTEX BEVERAGE</span>
-            </div>
-          </div>
-          <div class="portfolio-body">
-            <div class="portfolio-meta">
-              <span class="portfolio-tag">Performance Media</span>
-              <span class="portfolio-result-badge">+520% DTC Sales</span>
-            </div>
-            <h3 class="portfolio-title">Vortex Functional Energy Drink</h3>
-            <p class="portfolio-desc">Full TikTok Spark Ads and creator seeding engine that drove sold-out retail and direct-to-consumer inventory within 48 hours.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">4.6x</span>
-                <span class="p-metric-lbl">Blended ROAS</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">2.8M</span>
-                <span class="p-metric-lbl">Units Shipped</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- GLOBAL 6 -->
-        <div class="portfolio-card" data-category="brand" data-city="global">
-          <div class="portfolio-img-wrap">
-            <span class="portfolio-city-badge">🌐 Global</span>
-            <div class="portfolio-img-mock" style="background: linear-gradient(135deg, #1F31A4, #FB8500);">
-              <span>NOVA WELLNESS</span>
-            </div>
-          </div>
-          <div class="portfolio-body">
-            <div class="portfolio-meta">
-              <span class="portfolio-tag">Brand Identity</span>
-              <span class="portfolio-result-badge">Global Launch</span>
-            </div>
-            <h3 class="portfolio-title">Nova Wellness Brand Creation</h3>
-            <p class="portfolio-desc">End-to-end naming, sustainable packaging design, and launch campaign that secured nationwide distribution in Sephora & Target.</p>
-            <div class="portfolio-metrics">
-              <div class="p-metric">
-                <span class="p-metric-val">1,200+</span>
-                <span class="p-metric-lbl">Retail Locations</span>
-              </div>
-              <div class="p-metric">
-                <span class="p-metric-val">94%</span>
-                <span class="p-metric-lbl">Brand Sentiment</span>
-              </div>
-            </div>
+            <a href="contact.html" class="rsm-arrow-link">
+              <span>Explore Project</span>
+              <span class="arrow-glyph">›</span>
+            </a>
           </div>
         </div>
       </div>
@@ -445,6 +623,54 @@
       </div>
     </div>
   </footer>
+
+  <!-- HARAM 5-PHOTO LIGHTBOX MODAL -->
+  <div class="haram-lightbox-modal" id="haramLightboxModal" aria-hidden="true" role="dialog">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close Gallery Modal">✕</button>
+      
+      <div class="lightbox-header-bar">
+        <div class="lightbox-counter"><span id="lightboxCurrentIdx">1</span> / <span id="lightboxTotalCount">6</span> Photos</div>
+        <div class="lightbox-badge" id="lightboxModalBadge">Makkah Mega Project Execution • اللوحات الموسمية والمؤقتة</div>
+      </div>
+
+      <div class="lightbox-main-view">
+        <button type="button" class="lightbox-nav-btn prev-btn" id="lightboxPrevBtn" aria-label="Previous image">❮</button>
+        
+        <div class="lightbox-image-stage">
+          <img src="assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg" id="lightboxActiveImg" alt="Haram Signage" class="lightbox-img">
+        </div>
+
+        <button type="button" class="lightbox-nav-btn next-btn" id="lightboxNextBtn" aria-label="Next image">❯</button>
+      </div>
+
+      <div class="lightbox-info-pane">
+        <div class="lightbox-tag" id="lightboxTag">Courtyard Pillar Totems</div>
+        <h3 class="lightbox-title" id="lightboxTitle">King Abdul Aziz Gate (No. 01) & Ajyad Gate (No. 03)</h3>
+        <p class="lightbox-desc" id="lightboxDesc">Directional monolith pillars with compliance and prohibition pictograms in the southern piazza.</p>
+      </div>
+
+      <!-- Thumbnail Selector Row -->
+      <div class="lightbox-thumb-strip" id="lightboxThumbStrip">
+        <div class="lightbox-thumb active" data-idx="0">
+          <img src="assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg" alt="King Abdul Aziz Gate">
+        </div>
+        <div class="lightbox-thumb" data-idx="1">
+          <img src="assets/haram-seasonal/haram-stairs-toilets.jpg" alt="Facility Access Header">
+        </div>
+        <div class="lightbox-thumb" data-idx="2">
+          <img src="assets/haram-seasonal/haram-salam-gate.jpg" alt="To As-Salaam Gate">
+        </div>
+        <div class="lightbox-thumb" data-idx="3">
+          <img src="assets/haram-seasonal/haram-king-fahd-expansion.jpg" alt="Third Saudi Expansion">
+        </div>
+        <div class="lightbox-thumb" data-idx="4">
+          <img src="assets/haram-seasonal/haram-highmast-directional.jpg" alt="High-Mast Fingerposts">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
