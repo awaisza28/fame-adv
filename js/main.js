@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initCounters();
   initScrollReveals();
-  initHeroCurtainWipe();
   initRoiEstimator();
   initPortfolioFilter();
   initAccordions();
@@ -15,43 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardSliders();
   initHaramLightboxModal();
   initDynamicSignageMarquee();
+  initHeroTunnelWayfinding();
 });
-
-/* --------------------------------------------------------------------------
-   HERO FLUID PARALLAX MOTION EFFECT (NO FREEZE)
-   -------------------------------------------------------------------------- */
-function initHeroCurtainWipe() {
-  const hero = document.querySelector('.hero-fullscreen');
-  const heroImg = document.querySelector('.hero-fullscreen .hero-bg-img');
-  const heroOverlay = document.querySelector('.hero-fullscreen .hero-bg-overlay');
-  if (!hero || !heroImg) return;
-
-  let ticking = false;
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrollY = window.scrollY || window.pageYOffset;
-        const vh = window.innerHeight;
-
-        if (scrollY <= vh * 1.5) {
-          const progress = Math.min(Math.max(scrollY / vh, 0), 1);
-          // Parallax depth translation and subtle scale
-          const translateY = scrollY * 0.28;
-          const scale = 1 + (progress * 0.04);
-          
-          heroImg.style.transform = `translateY(${translateY}px) scale(${scale})`;
-          
-          if (heroOverlay) {
-            heroOverlay.style.background = `linear-gradient(180deg, rgba(0, 0, 0, ${0.4 + progress * 0.3}) 0%, transparent 40%, rgba(0, 0, 0, ${0.5 + progress * 0.3}) 100%)`;
-          }
-        }
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-}
 
 /* --------------------------------------------------------------------------
    DIRECTIONAL SCROLL REVEALS & ENTRO MASKED TEXT UNVEIL
@@ -60,19 +24,44 @@ function initScrollReveals() {
   const revealElements = document.querySelectorAll('.reveal-mask, .reveal-from-right, .reveal-from-left, .reveal-from-top, .reveal-from-bottom, .saudi-city-card, .portfolio-card, .service-card');
   if (!revealElements.length) return;
 
+  const revealEl = (el) => {
+    el.classList.add('is-revealed');
+    el.classList.add('revealed');
+  };
+
+  const checkVisibility = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= vh * 0.95 && rect.bottom >= 0) {
+        revealEl(el);
+      }
+    });
+  };
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-revealed');
-        entry.target.classList.add('revealed');
+        revealEl(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.05,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.01,
+    rootMargin: '0px 0px 80px 0px'
   });
 
   revealElements.forEach(el => observer.observe(el));
+
+  // Run immediate and on scroll
+  checkVisibility();
+  window.addEventListener('scroll', checkVisibility, { passive: true });
+  window.addEventListener('resize', checkVisibility, { passive: true });
+
+  // Safety net to guarantee content is never permanently hidden
+  setTimeout(() => {
+    revealElements.forEach(el => revealEl(el));
+  }, 1600);
 }
 
 /* --------------------------------------------------------------------------
@@ -82,33 +71,72 @@ function initNavbar() {
   const header = document.querySelector('.site-header');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  let menuBackdrop = document.getElementById('menuBackdrop');
 
-  // Sticky header background
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+  if (!menuBackdrop) {
+    menuBackdrop = document.createElement('div');
+    menuBackdrop.id = 'menuBackdrop';
+    menuBackdrop.className = 'menu-backdrop';
+    if (header && header.parentNode) {
+      header.parentNode.insertBefore(menuBackdrop, header);
+    } else {
+      document.body.appendChild(menuBackdrop);
+    }
+  }
+
+  // Sticky header background & hide logo on scroll
+  const handleHeaderScroll = () => {
+    if (window.scrollY > 20) {
       header?.classList.add('scrolled');
     } else {
       header?.classList.remove('scrolled');
     }
-  });
+  };
+  window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+  handleHeaderScroll();
 
-  // Mobile menu toggle
+  const openDrawer = () => {
+    if (!navLinks) return;
+    navLinks.classList.add('open');
+    menuBackdrop.classList.add('open');
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeDrawer = () => {
+    if (!navLinks) return;
+    navLinks.classList.remove('open');
+    menuBackdrop.classList.remove('open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  // Menu toggle button
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      navLinks.classList.toggle('open');
-      const icon = menuToggle.querySelector('svg, i');
       if (navLinks.classList.contains('open')) {
-        menuToggle.setAttribute('aria-expanded', 'true');
+        closeDrawer();
       } else {
-        menuToggle.setAttribute('aria-expanded', 'false');
+        openDrawer();
       }
     });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove('open');
+    // Close when clicking backdrop
+    menuBackdrop.addEventListener('click', closeDrawer);
+
+    // Close when clicking close button inside drawer
+    document.querySelectorAll('.drawer-close-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeDrawer();
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeDrawer();
       }
     });
   }
@@ -199,8 +227,54 @@ function initRoiEstimator() {
    4. PORTFOLIO DUAL FILTERING (CITY & CATEGORY)
    -------------------------------------------------------------------------- */
 function initPortfolioFilter() {
+  // 1. Projective-style Fullscreen Architectural Grid Filtering
+  const projectiveTabs = document.querySelectorAll('.projective-tab-btn');
+  const projectiveTiles = document.querySelectorAll('.projective-tile');
+
+  if (projectiveTabs.length && projectiveTiles.length) {
+    projectiveTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        projectiveTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filterVal = tab.getAttribute('data-filter');
+
+        projectiveTiles.forEach(tile => {
+          const tileCity = (tile.getAttribute('data-city') || '').toLowerCase();
+          const tileCategories = (tile.getAttribute('data-category') || '').toLowerCase().split(' ');
+
+          const isMatch = filterVal === 'all' || tileCity === filterVal || tileCategories.includes(filterVal);
+
+          if (isMatch) {
+            tile.style.display = 'block';
+            setTimeout(() => {
+              tile.style.opacity = '1';
+              tile.style.transform = 'scale(1)';
+            }, 30);
+          } else {
+            tile.style.opacity = '0';
+            tile.style.transform = 'scale(0.97)';
+            setTimeout(() => {
+              tile.style.display = 'none';
+            }, 250);
+          }
+        });
+      });
+    });
+
+    // Check URL query param for deep linking (e.g. portfolio.html?city=jeddah)
+    const urlParams = new URLSearchParams(window.location.search);
+    const cityParam = urlParams.get('city');
+    if (cityParam) {
+      const targetTab = Array.from(projectiveTabs).find(t => t.getAttribute('data-filter') === cityParam.toLowerCase());
+      if (targetTab) {
+        targetTab.click();
+      }
+    }
+  }
+
+  // 2. Legacy / Standard card grid support
   const cityBtns = document.querySelectorAll('[data-city-filter]');
-  const categoryBtns = document.querySelectorAll('[data-filter]');
+  const categoryBtns = document.querySelectorAll('[data-filter]:not(.projective-tab-btn)');
   const subFilterBtns = document.querySelectorAll('[data-sub-filter]');
   const makkahSubFilterWrapper = document.getElementById('makkahSubFilter');
   const portfolioItems = document.querySelectorAll('.portfolio-card');
@@ -302,7 +376,7 @@ function initPortfolioFilter() {
    5. ACCORDIONS (FAQ)
    -------------------------------------------------------------------------- */
 function initAccordions() {
-  const headers = document.querySelectorAll('.accordion-header');
+  const headers = document.querySelectorAll('.accordion-header, .hero-arch-item-header');
 
   headers.forEach(header => {
     header.addEventListener('click', () => {
@@ -310,22 +384,22 @@ function initAccordions() {
       const body = header.nextElementSibling;
       const isActive = item.classList.contains('active');
 
-      // Close all other items in the same accordion group
+      // Close all other items in the same accordion group if in standard accordion
       const parentAccordion = item.closest('.accordion');
       if (parentAccordion) {
         parentAccordion.querySelectorAll('.accordion-item').forEach(otherItem => {
           otherItem.classList.remove('active');
-          const otherBody = otherItem.querySelector('.accordion-body');
+          const otherBody = otherItem.querySelector('.accordion-body, .hero-arch-body');
           if (otherBody) otherBody.style.maxHeight = null;
         });
       }
 
       if (!isActive) {
         item.classList.add('active');
-        body.style.maxHeight = body.scrollHeight + 'px';
+        if (body) body.style.maxHeight = body.scrollHeight + 'px';
       } else {
         item.classList.remove('active');
-        body.style.maxHeight = null;
+        if (body) body.style.maxHeight = null;
       }
     });
   });
@@ -511,6 +585,12 @@ const PROJECT_GALLERIES = {
     link: 'portfolio.html?city=jeddah',
     items: [
       {
+        img: 'assets/galleria-hotel-facade.jpg',
+        tag: 'Architectural Hotel Facade',
+        title: 'The Galleria Hotel Jeddah — Neoclassical Grand Portico & Arched Loggias (فندق ذا جاليريا جدة)',
+        desc: 'Iconic 5-star luxury hotel in central Jeddah inspired by Galleria Vittorio Emanuele II in Milan, featuring soaring neoclassical arched porticos, luxury shopping arcade, bespoke room identification suites, and comprehensive interior wayfinding.'
+      },
+      {
         img: 'assets/galleria hotel/WhatsApp Image 2023-09-18 at 14.38.53.jpg',
         tag: 'Corridor Wayfinding Blades',
         title: 'Suspended Corridor Directional Signage (المصعد • Elevator)',
@@ -549,10 +629,16 @@ const PROJECT_GALLERIES = {
     ]
   },
   kaia: {
-    badge: 'Jeddah International Airport • مطار الملك عبدالعزيز الدولي',
+    badge: 'KAIA Private Aviation & Jet Aviation Terminal • مطار الملك عبدالعزيز الدولي (صالة الطيران الخاص)',
     city: 'Jeddah',
     link: 'portfolio.html?city=jeddah',
     items: [
+      {
+        img: 'assets/kaia-private-aviation-terminal.jpg',
+        tag: 'Architectural Terminal Cover',
+        title: 'KAIA Private Aviation & Jet Aviation Terminal Facade (صالة الطيران الخاص)',
+        desc: 'Monumental private jet aviation terminal portico at King Abdulaziz International Airport, featuring soaring V-truss structural columns, sweeping canopy, reflective glass curtain wall, and custom granite entrance monument branding.'
+      },
       {
         img: 'assets/KAIA/IMG_9164 (2) (Medium).jpg',
         tag: 'Monumental Entrance Signs',
@@ -691,6 +777,43 @@ const PROJECT_GALLERIES = {
         tag: 'Interior Directionals',
         title: 'Corporate Suite Interior Architectural Wall Sign',
         desc: 'Bespoke corporate identity signage with gold geometric motifs for executive floors and boardroom suites.'
+      }
+    ]
+  },
+  pnu: {
+    badge: 'Princess Nourah University Mega-Campus • جامعة الأميرة نورة بنت عبد الرحمن',
+    city: 'Riyadh',
+    link: 'services.html',
+    items: [
+      {
+        img: 'assets/pnu-campus-monument.jpg',
+        tag: 'Architectural Campus Cover',
+        title: 'Princess Nourah University Mega-Campus Masterplan & Central Dome (جامعة الأميرة نورة بنت عبد الرحمن)',
+        desc: 'World’s largest women’s university campus featuring monumental neoclassical Islamic sandstone architecture, 38 administrative and academic colleges, central grand dome, and a fully integrated campus-wide wayfinding network.'
+      },
+      {
+        img: 'assets/pnu/_DSC0148.JPG',
+        tag: 'Concourse Directional Totem',
+        title: 'Monumental Bilingual Wayfinding Totem (مكاتب الأساتذة • صالة • مصلى • شؤون الطالبات)',
+        desc: 'Floor-standing architectural wayfinding totem engineered with precision CNC laser-cut stainless steel Arabesque latticework, vibrant signal-yellow contrast backplate, and cast frosted acrylic directional blade.'
+      },
+      {
+        img: 'assets/pnu/_DSC0214.JPG',
+        tag: '3D Solid Dimensional Lettering',
+        title: 'Solid Brushed Stainless Steel Pin-Mounted Typography (SB3 Students...)',
+        desc: 'Macro-engineered dimensional solid metal letterforms pin-mounted with concealed standoffs on polished flamed granite wall, providing crisp shadow definition, longevity, and tactile prestige.'
+      },
+      {
+        img: 'assets/pnu/_DSC0154.JPG',
+        tag: 'Sandstone Restroom Blade',
+        title: 'Limestone Wall-Mounted Restroom Blade Sign (دورات المياه للسيدات)',
+        desc: 'Dual-faced illuminated frosted acrylic blade with pictographic icon mounted on custom gold/yellow powder-coated bracket with traditional Islamic geometric filigree.'
+      },
+      {
+        img: 'assets/pnu/_DSC0089.JPG',
+        tag: 'Curved Stainless Restroom Blade',
+        title: 'Curved Architectural Stainless Steel Blade Sign with Amber Core',
+        desc: 'Curved satin-finish stainless steel housing with precision laser-cut Arabesque perforation, internal amber reflector, and cantilevered frosted acrylic pictogram plate.'
       }
     ]
   }
@@ -897,12 +1020,17 @@ function initHaramLightboxModal() {
     });
   });
 
-  genericGalleryBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  const allGalleryTriggers = document.querySelectorAll('[data-gallery-target], .open-signage-gallery-btn, .project-brief-card, .projective-tile');
+  allGalleryTriggers.forEach(el => {
+    el.addEventListener('click', (e) => {
+      // If clicking directly on an anchor or button that is not a gallery trigger, don't hijack
+      if (e.target.tagName === 'A' && !e.target.hasAttribute('data-gallery-target') && !e.target.classList.contains('open-signage-gallery-btn') && !e.target.classList.contains('projective-tile-cta')) {
+        return;
+      }
       e.preventDefault();
       e.stopPropagation();
-      const gKey = btn.getAttribute('data-gallery-target') || 'haram';
-      const idx = parseInt(btn.getAttribute('data-index') || '0', 10);
+      const gKey = el.getAttribute('data-gallery-target') || 'pnu';
+      const idx = parseInt(el.getAttribute('data-gallery-index') || el.getAttribute('data-index') || '0', 10);
       openGalleryModal(gKey, idx);
     });
   });
@@ -938,103 +1066,281 @@ function initHaramLightboxModal() {
 }
 
 /* --------------------------------------------------------------------------
-   9. DYNAMIC SIGNAGE MARQUEE ANIMATION (DYNAMIC SCRIPT FOR PROJECT IMAGES)
+   9. SIGNAGE 2-UP CARD TRACK — ORANGE BG SLIDING GALLERY
    -------------------------------------------------------------------------- */
 function initDynamicSignageMarquee() {
-  const marqueeTrack = document.querySelector('.signage-marquee-track');
-  if (!marqueeTrack) return;
+  const showcase = document.getElementById('signageFullscreenShowcase');
+  if (!showcase) return;
 
+  // Build pool: one representative image per project
   const pool = [];
 
-  // 1. Gather all photos dynamically from all registered project galleries
   Object.keys(PROJECT_GALLERIES).forEach(galleryKey => {
     const gallery = PROJECT_GALLERIES[galleryKey];
+    const city = gallery.city || 'Saudi Arabia';
     const link = gallery.link || 'portfolio.html';
-    const city = gallery.city || 'Project';
-
-    gallery.items.forEach(item => {
-      // Clean display title
+    if (gallery.items && gallery.items.length > 0) {
+      const item = gallery.items[0];
       const cleanTitle = item.title.split('(')[0].replace(/[•\-–]/g, ' ').trim();
-      pool.push({
-        img: item.img,
-        title: `${city} • ${cleanTitle}`,
-        desc: item.desc,
-        tag: item.tag,
-        link: link,
-        btnText: 'View Project →'
-      });
-    });
+      pool.push({ img: item.img, title: cleanTitle, location: `${city}, Saudi Arabia`, link });
+    }
   });
 
-  // 2. Include spatial & digital typology products
-  const typologies = [
-    {
-      img: 'assets/totem-slide.jpg',
-      title: 'Spatial • Monumental Totems & Pylons',
-      desc: 'Freestanding aluminium monolith pylons and interactive wayfinding',
-      tag: 'Freestanding Monolith',
-      link: 'services.html#totem-signage',
-      btnText: 'Explore System →'
-    },
-    {
-      img: 'assets/suspended-slide.jpg',
-      title: 'Spatial • Suspended Signage Systems',
-      desc: 'Aircraft-cable ceiling suspended directional panels for high-traffic hubs',
-      tag: 'Ceiling-Mounted',
-      link: 'services.html#suspended-signage',
-      btnText: 'Explore System →'
-    },
-    {
-      img: 'assets/screen-slide.jpg',
-      title: 'Digital • Dynamic LED Screen Networks',
-      desc: 'Smart interactive digital media & dynamic architectural display networks',
-      tag: 'Dynamic Display',
-      link: 'services.html#digital-screen',
-      btnText: 'Explore System →'
-    },
-    {
-      img: 'assets/flag-slide.jpg',
-      title: 'Spatial • Flag & Blade Signs',
-      desc: 'Perpendicular wall-mounted illuminated corridor blade signs',
-      tag: 'Perpendicular Blade',
-      link: 'services.html#flag-signage',
-      btnText: 'Explore System →'
-    }
+  // Curated extras
+  const extras = [
+    { img: 'assets/hero-station-a2.jpg', title: 'Station A2 — Metro Wayfinding Facade', location: 'Riyadh, Saudi Arabia', link: 'portfolio.html' },
+    { img: 'assets/haram-seasonal/haram-highmast-directional.jpg', title: 'Haram Highmast Directional Signage', location: 'Makkah, Saudi Arabia', link: 'portfolio.html' },
+    { img: 'assets/pnu/_DSC0089.JPG', title: 'Princess Nourah University — Campus Wayfinding', location: 'Riyadh, Saudi Arabia', link: 'portfolio.html' },
+    { img: 'assets/pnu/_DSC0154.JPG', title: 'PNU — Monumental Entrance Signage', location: 'Riyadh, Saudi Arabia', link: 'portfolio.html' },
+    { img: 'assets/KAIA/IMG_9228-2.jpg', title: 'KAIA Terminal — Architectural Pylons', location: 'Jeddah, Saudi Arabia', link: 'portfolio.html' },
+    { img: 'assets/galleria hotel/IMG-20230925-WA0066.jpg', title: 'Galleria Hotel — Luxury Interior Signage', location: 'Jeddah, Saudi Arabia', link: 'portfolio.html' }
   ];
+  extras.forEach(e => pool.push(e));
 
-  typologies.forEach(t => pool.push(t));
-
-  // 3. Shuffle / Randomize dynamically (Fisher-Yates shuffle)
+  // Shuffle
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
 
-  // 4. Select random cards for the marquee showcase
-  const selectedCards = pool.slice(0, Math.min(pool.length, 14));
+  if (pool.length < 2) return;
 
-  const buildCardHtml = (card, idx, isAriaHidden = false) => {
-    return `
-        <a href="${card.link}" class="signage-flight-card" aria-label="${card.title}" ${isAriaHidden ? 'aria-hidden="true"' : ''}>
-          <div class="signage-flight-img-wrap">
-            <img src="${card.img}" alt="${card.title}" class="signage-flight-img" loading="lazy">
-            <span class="signage-flight-tag">${card.tag || 'Project Showcase'}</span>
-          </div>
-          <div class="signage-flight-info">
-            <div class="signage-flight-title">${card.title}</div>
-            <span class="signage-flight-arrow">›</span>
-          </div>
-        </a>`;
+  // Build card HTML
+  const buildCard = (item) => `
+    <div class="sfs-card">
+      <img src="${item.img}" alt="${item.title}" class="sfs-img" loading="lazy">
+      <div class="sfs-caption">
+        <div class="sfs-title">${item.title}</div>
+        <div class="sfs-location">${item.location}</div>
+      </div>
+    </div>`;
+
+  const track = document.getElementById('sfsTrack');
+  const dotsEl = document.getElementById('sfsDots');
+  const navBtn = document.getElementById('sfsNavBtn');
+
+  if (!track) return;
+
+  // Inject all cards
+  track.innerHTML = pool.map(buildCard).join('');
+
+  // Sizing function: strictly 2 images visible on desktop (1 on mobile), true 1:1 square
+  const updateCardSizes = () => {
+    const viewport = showcase.querySelector('.sfs-viewport');
+    if (!viewport) return;
+    const viewportWidth = viewport.clientWidth;
+    const computedTrackStyle = window.getComputedStyle(track);
+    const padLeft = parseFloat(computedTrackStyle.paddingLeft) || 0;
+    const padRight = parseFloat(computedTrackStyle.paddingRight) || 0;
+    const gap = parseFloat(computedTrackStyle.gap) || 16;
+    
+    const isMobile = window.innerWidth <= 768;
+    const imagesVisible = isMobile ? 1 : 2;
+    
+    const availableWidth = viewportWidth - padLeft - padRight - (gap * (imagesVisible - 1));
+    const cardWidth = Math.floor(availableWidth / imagesVisible);
+    
+    track.querySelectorAll('.sfs-card').forEach(card => {
+      card.style.width = `${cardWidth}px`;
+      card.style.height = `${cardWidth}px`;
+      card.style.flex = `0 0 ${cardWidth}px`;
+    });
   };
 
-  // 5. Render Set 1 + Duplicate Set 2 for 100% infinite seamless CSS loop
-  let html = '';
-  selectedCards.forEach((card, i) => {
-    html += buildCardHtml(card, i, false);
-  });
-  selectedCards.forEach((card, i) => {
-    html += buildCardHtml(card, i, true);
+  updateCardSizes();
+
+  // Total pages = ceil(pool.length / 2)
+  const isMobile = () => window.innerWidth <= 768;
+  const imagesPerPage = () => (isMobile() ? 1 : 2);
+  const totalPages = Math.ceil(pool.length / 2);
+  let currentPage = 0;
+
+  // Build dots
+  let dotsHtml = '';
+  for (let i = 0; i < totalPages; i++) {
+    dotsHtml += `<button class="sfs-dot${i === 0 ? ' active' : ''}" data-page="${i}" aria-label="Page ${i + 1}"></button>`;
+  }
+  if (dotsEl) dotsEl.innerHTML = dotsHtml;
+
+  const goToPage = (page) => {
+    const allDots = showcase.querySelectorAll('.sfs-dot');
+    if (allDots[currentPage]) allDots[currentPage].classList.remove('active');
+
+    currentPage = (page + totalPages) % totalPages;
+
+    const firstCard = track.querySelector('.sfs-card');
+    if (!firstCard) return;
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const gap = parseFloat(window.getComputedStyle(track).gap) || 16;
+    const perPage = imagesPerPage();
+
+    track.style.transform = `translateX(-${currentPage * perPage * (cardWidth + gap)}px)`;
+
+    if (allDots[currentPage]) allDots[currentPage].classList.add('active');
+  };
+
+  // Floating cursor follower (< >) - ACTIVE ONLY IN THIS SECTION
+  const follower = document.getElementById('sfsCursorFollower');
+  const viewport = showcase.querySelector('.sfs-viewport');
+
+  if (follower && viewport) {
+    viewport.addEventListener('mouseenter', () => {
+      follower.classList.add('active');
+    });
+
+    viewport.addEventListener('mouseleave', () => {
+      follower.classList.remove('active');
+      follower.classList.remove('clicking');
+    });
+
+    viewport.addEventListener('mousemove', (e) => {
+      follower.style.setProperty('--x', `${e.clientX}px`);
+      follower.style.setProperty('--y', `${e.clientY}px`);
+    });
+
+    viewport.addEventListener('mousedown', () => {
+      follower.classList.add('clicking');
+    });
+
+    window.addEventListener('mouseup', () => {
+      follower.classList.remove('clicking');
+    });
+
+    // Clicking on viewport advances or goes back based on left/right half
+    viewport.addEventListener('click', (e) => {
+      if (e.target.closest('button, a')) return;
+      const rect = viewport.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      clearInterval(autoTimer);
+      if (clickX < rect.width / 2) {
+        goToPage(currentPage - 1);
+      } else {
+        goToPage(currentPage + 1);
+      }
+      autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
+    });
+  }
+
+  // Nav button fallback for touch devices
+  if (navBtn) {
+    navBtn.addEventListener('click', () => {
+      clearInterval(autoTimer);
+      goToPage(currentPage + 1);
+      autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
+    });
+  }
+
+  // Dot clicks
+  showcase.addEventListener('click', (e) => {
+    const dot = e.target.closest('.sfs-dot');
+    if (!dot) return;
+    clearInterval(autoTimer);
+    goToPage(parseInt(dot.dataset.page));
+    autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
   });
 
-  marqueeTrack.innerHTML = html;
+  // Window resize handler: recalculate exact 2-card geometry
+  window.addEventListener('resize', () => {
+    updateCardSizes();
+    goToPage(currentPage);
+  });
+
+  // Auto-advance every 6s
+  let autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(autoTimer);
+    } else {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
+    }
+  });
 }
+
+/* --------------------------------------------------------------------------
+   7. HERO SHOWCASE (ROCK-SOLID STILL, RANDOMIZED CROSSFADE SLIDESHOW)
+   -------------------------------------------------------------------------- */
+function initHeroTunnelWayfinding() {
+  const heroSection = document.getElementById('heroWayfinding');
+  if (!heroSection) return;
+
+  const parallaxWrap = document.getElementById('heroTunnelParallax');
+  if (parallaxWrap) {
+    // 100% Rock-solid still: remove any 3D perspective shaking or mouse tilt
+    parallaxWrap.style.transform = 'none';
+  }
+
+  // Curated list of high-definition architectural wayfinding projects
+  const heroImages = [
+    'assets/hero-station-a2.jpg',
+    'assets/pnu/1.jpg',
+    'assets/pnu/7.jpg',
+    'assets/pnu/12.jpg',
+    'assets/KAIA/IMG_9164 (2) (Medium).jpg',
+    'assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg',
+    'assets/galleria hotel/IMG-20230925-WA0066.jpg',
+    'assets/Dallah  ALbarakah/IMG-20230925-WA0030.jpg',
+    'assets/pnu/_DSC0089.JPG',
+    'assets/pnu/_DSC0154.JPG',
+    'assets/KAIA/IMG_9228-2.jpg'
+  ];
+
+  let currentImgIndex = 0;
+  const imgA = document.getElementById('heroTunnelImgA');
+  let imgB = document.getElementById('heroTunnelImgB');
+
+  if (!imgB && parallaxWrap) {
+    imgB = document.createElement('img');
+    imgB.id = 'heroTunnelImgB';
+    imgB.className = 'hero-tunnel-img';
+    imgB.alt = 'Architectural Wayfinding Showcase';
+    parallaxWrap.appendChild(imgB);
+  }
+
+  if (imgA) {
+    imgA.classList.add('active');
+  }
+
+  let activeIsA = true;
+
+  const changeToRandomImage = () => {
+    let nextIndex;
+    do {
+      nextIndex = Math.floor(Math.random() * heroImages.length);
+    } while (nextIndex === currentImgIndex && heroImages.length > 1);
+
+    currentImgIndex = nextIndex;
+    const nextSrc = heroImages[currentImgIndex];
+
+    const targetImg = activeIsA ? imgB : imgA;
+    const currentImg = activeIsA ? imgA : imgB;
+
+    if (!targetImg || !currentImg) return;
+
+    // Preload image before fading in
+    const preload = new Image();
+    preload.src = nextSrc;
+    preload.onload = () => {
+      targetImg.src = nextSrc;
+      targetImg.classList.add('active');
+      currentImg.classList.remove('active');
+      activeIsA = !activeIsA;
+    };
+  };
+
+  // Change image randomly every 6 seconds
+  let heroInterval = setInterval(changeToRandomImage, 6000);
+
+  // Pause when tab is not focused to save battery/GPU
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(heroInterval);
+    } else {
+      clearInterval(heroInterval);
+      heroInterval = setInterval(changeToRandomImage, 6000);
+    }
+  });
+}
+
+

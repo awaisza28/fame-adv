@@ -6,234 +6,93 @@
   <title>FAME Advertising Company — Digital Growth & Strategic Brand Impact</title>
   <meta name="description" content="FAME is a premier advertising and digital growth agency crafting high-converting omnichannel campaigns, award-winning brand identities, and hyper-scaled performance marketing.">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=7.1">
 </head>
 <body>
 
   <!-- SITE HEADER -->
   <header class="site-header">
-    <div class="container header-container">
+    <div class="header-container">
       <a href="index.html" class="brand-logo" aria-label="FAME Advertising Company">
         <img src="assets/logo.svg" alt="FAME Advertising Company" class="brand-logo-img">
       </a>
 
-      <nav class="nav-links">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="portfolio.html" class="nav-link">Portfolio</a>
-        <a href="blog.html" class="nav-link">Insights</a>
-        <a href="careers.html" class="nav-link">Careers</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      <!-- MINIMALIST FLOATING POPUP MENU CARD -->
+      <nav class="nav-links minimal-menu-card" id="siteNavLinks" aria-label="Main Navigation">
+        <div class="menu-card-top">
+          <div class="menu-card-links">
+            <a href="index.html" class="nav-link menu-card-link active">Home</a>
+            <a href="about.html" class="nav-link menu-card-link">About Us</a>
+            <a href="services.html" class="nav-link menu-card-link">Services</a>
+            <a href="portfolio.html" class="nav-link menu-card-link">Our Works</a>
+            <a href="blog.html" class="nav-link menu-card-link">Insights</a>
+          </div>
+          <button type="button" class="menu-card-close-btn drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">✕</button>
+        </div>
+
+        <hr class="menu-card-divider">
+
+        <div class="menu-card-footer">
+          <a href="contact.html" class="menu-footer-link">Contact us</a>
+          <a href="careers.html" class="menu-footer-link">Careers <span class="arrow-up-right">↗</span></a>
+        </div>
       </nav>
 
       <div class="header-actions">
-        <a href="contact.html" class="btn btn-primary btn-sm">Start Project</a>
         <button class="menu-toggle" aria-label="Toggle Navigation Menu">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-          </svg>
+          <span class="menu-toggle-text">Menu</span>
+          <span class="menu-toggle-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION WITH PURE CLEAN FULL SCREEN WAYFINDING BACKGROUND (DECK 1) -->
-  <section class="hero-section hero-fullscreen stack-card stack-card-1">
-    <div class="hero-bg-media">
-      <img src="assets/signage-family-showcase.jpg" alt="Complete Family of Wayfinding Signage: Totem, Flag, Suspended, Wall-Mounted and Digital Screen Systems" class="hero-bg-img">
-      <div class="hero-bg-overlay"></div>
-    </div>
-  </section>
-
-  <!-- CONTINUOUS LEFT-TO-RIGHT LOOPING SIGNAGE PROJECT SHOWCASE (DECK 2) -->
-  <section class="signage-scroll-showcase stack-card stack-card-2">
-    <div class="container">
-      <div class="section-header" style="margin-bottom: 2.5rem;">
-        <div class="reveal-mask reveal-delay-1"><h2 class="section-title" style="color: #FFFFFF;"><span class="gradient-text">Signage Gallery</span></h2></div>
-        <div class="reveal-mask reveal-delay-2"><p class="section-subtitle" style="color: #cbd5e1;">Rapid-deployment directional networks, 5-star luxury hospitality signage, and architectural media executed across Makkah, Jeddah, Riyadh, and premier national destinations.</p></div>
-      </div>
-    </div>
-
-    <!-- Infinite Scrolling Marquee Track (Left to Right Loop Powered by Dynamic Script) -->
-    <div class="signage-marquee-wrapper">
-      <div class="signage-marquee-track" id="dynamicSignageMarqueeTrack">
-        <!-- Dynamically populated and randomized from PROJECT_GALLERIES by js/main.js -->
-        <a href="portfolio.html?city=jeddah" class="signage-flight-card">
-          <div class="signage-flight-img-wrap">
-            <img src="assets/KAIA/IMG_9164 (2) (Medium).jpg" alt="KAIA General Aviation Terminal Monument" class="signage-flight-img">
-            <span class="signage-flight-tag">KAIA Airport</span>
-          </div>
-          <div class="signage-flight-info">
-            <div class="signage-flight-title">KAIA Airport — Granite Monument Entrance</div>
-            <span class="signage-flight-arrow">›</span>
-          </div>
-        </a>
-        <a href="portfolio.html?city=makkah" class="signage-flight-card">
-          <div class="signage-flight-img-wrap">
-            <img src="assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg" alt="King Abdul Aziz Gate" class="signage-flight-img">
-            <span class="signage-flight-tag">Makkah Grand Mosque</span>
-          </div>
-          <div class="signage-flight-info">
-            <div class="signage-flight-title">King Abdul Aziz Gate — Directional Pillars</div>
-            <span class="signage-flight-arrow">›</span>
-          </div>
-        </a>
+  <!-- HERO SECTION: INTELLIGENT ARCHITECTURAL WAYFINDING & SIGNAGE SYSTEMS (DECK 1) -->
+  <section class="hero-arch-section hero-tunnel-section stack-card stack-card-1" id="heroWayfinding">
+    <!-- Tunnel Background Stage with 3D Perspective Parallax & Scanbeam -->
+    <div class="hero-tunnel-stage" id="heroTunnelStage">
+      <div class="hero-tunnel-bg-wrap" id="heroTunnelParallax">
+        <img src="assets/hero-station-a2.jpg" alt="Princess Nourah University Station A2 Architectural Wayfinding Signage Facade" class="hero-tunnel-img active" id="heroTunnelImgA">
+        <img src="assets/pnu/1.jpg" alt="Architectural Wayfinding Showcase" class="hero-tunnel-img" id="heroTunnelImgB">
       </div>
     </div>
   </section>
 
-  <!-- DECK 3: LIVE METRICS STATS & SERVICES ECOSYSTEM -->
-  <div class="stack-card stack-card-3">
-    <!-- LIVE METRICS STATS -->
-    <section class="stats-section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-card reveal-from-right delay-1">
-            <div class="stat-number"><span class="stat-count" data-target="500">0</span><span>M+</span></div>
-            <div class="stat-label">Ad Impressions Delivered</div>
-          </div>
-          <div class="stat-card reveal-from-left delay-2">
-            <div class="stat-number"><span class="stat-count" data-target="140">0</span><span>+</span></div>
-            <div class="stat-label">Global Brands Scaled</div>
-          </div>
-          <div class="stat-card reveal-from-top delay-3">
-            <div class="stat-number"><span class="stat-count" data-target="98">0</span><span>%</span></div>
-            <div class="stat-label">Annual Client Retention</div>
-          </div>
-          <div class="stat-card reveal-from-bottom delay-4">
-            <div class="stat-number"><span class="stat-count" data-target="18">0</span><span>+</span></div>
-            <div class="stat-label">International Creative Awards</div>
-          </div>
-        </div>
+  <!-- DECK 2: SIGNAGE SHOWCASE (BLACK BG, 2-UP SLIDING CARDS WITH CUSTOM CURSOR FOLLOWER) -->
+  <section class="signage-fullscreen-showcase stack-card stack-card-2" id="signageFullscreenShowcase">
+    <!-- Floating cursor follower (< >) active only in this section -->
+    <div class="sfs-cursor-follower" id="sfsCursorFollower">
+      <svg width="28" height="14" viewBox="0 0 28 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1L1 7L7 13" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 1L27 7L21 13" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Header -->
+    <div class="sfs-header">
+      <span class="sfs-eyebrow">Wayfinding & Signage</span>
+      <h2 class="sfs-heading">Selected Works</h2>
+    </div>
+
+    <!-- Viewport with sliding track -->
+    <div class="sfs-viewport">
+      <div class="sfs-track" id="sfsTrack">
+        <!-- Dynamically populated by js/main.js initDynamicSignageMarquee() -->
       </div>
-    </section>
+      <button class="sfs-nav-btn" id="sfsNavBtn" aria-label="Next projects">
+        <span>Next</span> <span>›</span>
+      </button>
+    </div>
 
-    <!-- SERVICES PREVIEW -->
-    <section class="section" style="padding-top: 2rem;">
-      <div class="container">
-        <div class="section-header">
-          <div class="reveal-mask reveal-delay-1"><h2 class="section-title">End-to-End Advertising Ecosystem</h2></div>
-          <div class="reveal-mask reveal-delay-2"><p class="section-subtitle">We bridge the gap between high-impact brand artistry and data-obsessed growth marketing.</p></div>
-        </div>
-
-        <div class="services-grid">
-          <div class="card-glass service-card card-glow-blue reveal-from-right delay-1">
-            <div>
-              <div class="service-icon">01</div>
-              <h3 class="service-title">Brand Identity & Positioning</h3>
-              <p class="service-desc">Crafting iconic brand stories, visual systems, and distinctive market positioning that captivates audiences.</p>
-              <div class="service-features">
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Brand Architecture & Strategy
-                </div>
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Visual Identity & Design Systems
-                </div>
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Copywriting & Narrative Tone
-                </div>
-              </div>
-            </div>
-            <a href="services.html" class="btn btn-outline btn-sm">Explore Service →</a>
-          </div>
-
-          <div class="card-glass service-card card-glow-orange reveal-from-left delay-2">
-            <div>
-              <div class="service-icon">02</div>
-              <h3 class="service-title">Performance Media Buying</h3>
-              <p class="service-desc">Algorithmic, multi-channel ad scaling across Meta, Google Search/YouTube, TikTok, and Programmatic exchanges.</p>
-              <div class="service-features">
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  High-ROAS Meta & TikTok Ads
-                </div>
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Google Performance Max & Search
-                </div>
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Predictive Retargeting Models
-                </div>
-              </div>
-            </div>
-            <a href="services.html" class="btn btn-outline btn-sm">Explore Service →</a>
-          </div>
-
-          <div class="card-glass service-card card-glow-blue reveal-from-bottom delay-3">
-            <div>
-              <div class="service-icon">03</div>
-              <h3 class="service-title">High-Velocity Creative Studio</h3>
-              <p class="service-desc">Producing high-converting video ads, 3D product renders, UGC hooks, and motion graphics built specifically for conversions.</p>
-              <div class="service-features">
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Conversion-Focused Video Ads
-                </div>
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  3D Motion & CGI Visuals
-                </div>
-                <div class="service-feature-item">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  Continuous Creative Iteration A/B Testing
-                </div>
-              </div>
-            </div>
-            <a href="services.html" class="btn btn-outline btn-sm">Explore Service →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- DECK 4: INTERACTIVE ROI / CAMPAIGN ESTIMATOR -->
-  <section class="section stack-card stack-card-4" style="background: #080c18; color: #FFFFFF;">
-    <div class="container">
-      <div class="estimator-card">
-        <div class="estimator-grid">
-          <div>
-            <div class="badge orange" style="margin-bottom: 1rem;">Interactive Growth Model</div>
-            <h2>Estimate Your Brand's Scaled Trajectory</h2>
-            <p style="color: var(--text-muted); margin: 1rem 0 2rem;">
-              Adjust your monthly media spend slider to estimate prospective impressions, qualified sales pipeline, and expected revenue using FAME's performance benchmark benchmarks.
-            </p>
-
-            <div class="calc-group">
-              <div class="calc-label">
-                <span>Monthly Advertising Investment</span>
-                <span id="budgetValue" style="color: var(--color-accent); font-weight: 700; font-size: 1.15rem;">$15,000</span>
-              </div>
-              <input type="range" id="budgetRange" class="calc-range" min="3000" max="100000" step="1000" value="15000">
-            </div>
-
-            <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;">
-              <div>
-                <div style="font-size: 0.8rem; color: var(--text-dim);">Est. Monthly Reach</div>
-                <div id="estReach" style="font-size: 1.1rem; font-weight: 700; color: #fff;">1,578k+ Impressions</div>
-              </div>
-              <div>
-                <div style="font-size: 0.8rem; color: var(--text-dim);">Est. Qualified Leads / Orders</div>
-                <div id="estLeads" style="font-size: 1.1rem; font-weight: 700; color: #fff;">675+ High-Intent Leads</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="estimator-result-box">
-              <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Estimated Revenue Pipeline</div>
-              <div id="estRevenue" class="est-output-val">$130,550</div>
-              <div id="estRoas" style="font-weight: 700; color: #10B981; font-size: 1.25rem;">8.7x Est. ROAS</div>
-              <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: -0.5rem;">Based on blended omnichannel campaign attribution models.</p>
-              <a href="contact.html" class="btn btn-primary" style="width: 100%;">Claim Custom Growth Plan</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Bottom row with pagination dots and explore link -->
+    <div class="sfs-bottom-row">
+      <div class="sfs-dots" id="sfsDots"></div>
+      <a href="portfolio.html" class="sfs-discover-link" style="color: #FFFFFF; font-weight: 600; font-size: 0.85rem; text-decoration: none;">
+        <span>Discover all works</span> <span style="font-size: 1.1rem; margin-left: 0.25rem;">→</span>
+      </a>
     </div>
   </section>
 
@@ -325,14 +184,14 @@
         <!-- REAL PROJECT 1: KAIA AIRPORT -->
         <div class="portfolio-card">
           <div class="portfolio-img-wrap" style="aspect-ratio: 16 / 11; overflow: hidden; background: #080b14;">
-            <img src="assets/KAIA/IMG_9164 (2) (Medium).jpg" alt="KAIA International Airport Monument" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="assets/kaia-private-aviation-terminal.jpg" alt="KAIA Private Aviation Jet Aviation Terminal" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="portfolio-body">
             <div class="portfolio-meta">
-              <span class="portfolio-tag">Jeddah • Airport Transit</span>
+              <span class="portfolio-tag">Jeddah • Private Aviation</span>
             </div>
-            <h3 class="portfolio-title">King Abdulaziz International Airport (KAIA)</h3>
-            <p class="portfolio-desc">General Aviation Terminal granite monument & directional network.</p>
+            <h3 class="portfolio-title">KAIA Private Aviation — Jet Aviation Terminal</h3>
+            <p class="portfolio-desc">General Aviation Terminal entrance canopy, granite monument & directional network.</p>
             <a href="portfolio.html?city=jeddah" class="rsm-arrow-link">
               <span>View Project</span>
               <span class="arrow-glyph">›</span>
@@ -361,7 +220,7 @@
         <!-- REAL PROJECT 3: THE GALLERIA HOTEL -->
         <div class="portfolio-card">
           <div class="portfolio-img-wrap" style="aspect-ratio: 16 / 11; overflow: hidden; background: #080b14;">
-            <img src="assets/galleria hotel/galleria-room-plaque-level2.jpg" alt="The Galleria Hotel Jeddah" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="assets/galleria-hotel-facade.jpg" alt="The Galleria Hotel Jeddah" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="portfolio-body">
             <div class="portfolio-meta">
@@ -525,6 +384,6 @@
   </footer>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=7.1"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
   <title>About Us — FAME Advertising Company</title>
   <meta name="description" content="Discover the story, vision, leadership, and awards of FAME Advertising Company — redefining global brand storytelling and digital growth.">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=6.2">
 </head>
 <body>
 
@@ -17,29 +17,41 @@
         <img src="assets/logo.svg" alt="FAME Advertising Company" class="brand-logo-img">
       </a>
 
-      <nav class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link active">About Us</a>
-        <a href="services.html" class="nav-link">Services</a>
-        <a href="portfolio.html" class="nav-link">Portfolio</a>
-        <a href="blog.html" class="nav-link">Insights</a>
-        <a href="careers.html" class="nav-link">Careers</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      <!-- MINIMALIST FLOATING POPUP MENU CARD -->
+      <nav class="nav-links minimal-menu-card" id="siteNavLinks" aria-label="Main Navigation">
+        <div class="menu-card-top">
+          <div class="menu-card-links">
+            <a href="index.html" class="nav-link menu-card-link">Home</a>
+            <a href="about.html" class="nav-link menu-card-link active">About Us</a>
+            <a href="services.html" class="nav-link menu-card-link">Services</a>
+            <a href="portfolio.html" class="nav-link menu-card-link">Our Works</a>
+            <a href="blog.html" class="nav-link menu-card-link">Insights</a>
+          </div>
+          <button type="button" class="menu-card-close-btn drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">✕</button>
+        </div>
+
+        <hr class="menu-card-divider">
+
+        <div class="menu-card-footer">
+          <a href="contact.html" class="menu-footer-link">Contact us</a>
+          <a href="careers.html" class="menu-footer-link">Careers <span class="arrow-up-right">↗</span></a>
+        </div>
       </nav>
 
       <div class="header-actions">
-        <a href="contact.html" class="btn btn-primary btn-sm">Start Project</a>
         <button class="menu-toggle" aria-label="Toggle Navigation Menu">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-          </svg>
+          <span class="menu-toggle-text">Menu</span>
+          <span class="menu-toggle-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
         </button>
       </div>
     </div>
   </header>
 
   <!-- PAGE HERO -->
-  <section class="page-hero">
+  <section class="page-hero" style="padding: 9rem 0 4.5rem;">
     <div class="container">
       <div class="page-hero-content">
         <div class="badge">The FAME Story</div>
@@ -240,6 +252,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=6.2"></script>
 </body>
 </html>
