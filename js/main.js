@@ -525,7 +525,7 @@ function initForms() {
    -------------------------------------------------------------------------- */
 const PROJECT_GALLERIES = {
   haram: {
-    badge: 'Makkah Mega Project Execution • اللوحات الموسمية والمؤقتة',
+    badge: 'Grand Mosque • Haram Temporary Signage (اللوحات الموسمية والمؤقتة بالحرم المكي)',
     city: 'Makkah',
     link: 'portfolio.html?city=makkah',
     items: [
@@ -683,6 +683,12 @@ const PROJECT_GALLERIES = {
     link: 'portfolio.html?city=jeddah',
     items: [
       {
+        img: 'assets/dallah-albarakah-hq.jpg',
+        tag: 'Architectural Headquarters Facade',
+        title: 'Saleh Kamel Business Center — Dallah Al-Barakah HQ (مركز صالح كامل للأعمال)',
+        desc: 'Monumental corporate headquarters complex in Jeddah featuring contemporary glass curtain wall elevations, 3D electroplated gold facade crests, executive parking wayfinding, and integrated campus identification.'
+      },
+      {
         img: 'assets/Dallah  ALbarakah/WhatsApp Image 2023-09-25 at 12.05.09.jpg',
         tag: '3D Gold Monumental Facade',
         title: 'Saleh Kamel Business Center 3D Gold Facade (مركز صالح كامل للأعمال)',
@@ -781,40 +787,238 @@ const PROJECT_GALLERIES = {
     ]
   },
   pnu: {
-    badge: 'Princess Nourah University Mega-Campus • جامعة الأميرة نورة بنت عبد الرحمن',
+    badge: 'Princess Nourah University Mega-Campus • جامعة الأميرة نورة بنت عبد الرحمن (38 Photos)',
     city: 'Riyadh',
     link: 'services.html',
     items: [
-      {
-        img: 'assets/pnu-campus-monument.jpg',
-        tag: 'Architectural Campus Cover',
-        title: 'Princess Nourah University Mega-Campus Masterplan & Central Dome (جامعة الأميرة نورة بنت عبد الرحمن)',
-        desc: 'World’s largest women’s university campus featuring monumental neoclassical Islamic sandstone architecture, 38 administrative and academic colleges, central grand dome, and a fully integrated campus-wide wayfinding network.'
-      },
-      {
-        img: 'assets/pnu/_DSC0148.JPG',
-        tag: 'Concourse Directional Totem',
-        title: 'Monumental Bilingual Wayfinding Totem (مكاتب الأساتذة • صالة • مصلى • شؤون الطالبات)',
-        desc: 'Floor-standing architectural wayfinding totem engineered with precision CNC laser-cut stainless steel Arabesque latticework, vibrant signal-yellow contrast backplate, and cast frosted acrylic directional blade.'
-      },
-      {
-        img: 'assets/pnu/_DSC0214.JPG',
-        tag: '3D Solid Dimensional Lettering',
-        title: 'Solid Brushed Stainless Steel Pin-Mounted Typography (SB3 Students...)',
-        desc: 'Macro-engineered dimensional solid metal letterforms pin-mounted with concealed standoffs on polished flamed granite wall, providing crisp shadow definition, longevity, and tactile prestige.'
-      },
-      {
-        img: 'assets/pnu/_DSC0154.JPG',
-        tag: 'Sandstone Restroom Blade',
-        title: 'Limestone Wall-Mounted Restroom Blade Sign (دورات المياه للسيدات)',
-        desc: 'Dual-faced illuminated frosted acrylic blade with pictographic icon mounted on custom gold/yellow powder-coated bracket with traditional Islamic geometric filigree.'
-      },
-      {
-        img: 'assets/pnu/_DSC0089.JPG',
-        tag: 'Curved Stainless Restroom Blade',
-        title: 'Curved Architectural Stainless Steel Blade Sign with Amber Core',
-        desc: 'Curved satin-finish stainless steel housing with precision laser-cut Arabesque perforation, internal amber reflector, and cantilevered frosted acrylic pictogram plate.'
-      }
+          {
+                "img": "assets/pnu-campus-monument.jpg",
+                "tag": "Architectural Campus Cover",
+                "title": "Princess Nourah University Mega-Campus Masterplan & Central Dome (جامعة الأميرة نورة بنت عبد الرحمن)",
+                "desc": "World’s largest women’s university campus featuring monumental neoclassical Islamic sandstone architecture, 38 administrative and academic colleges, central grand dome, and a fully integrated campus-wide wayfinding network."
+          },
+          {
+                "img": "assets/pnu/_DSC0148.JPG",
+                "tag": "Concourse Directional Totem",
+                "title": "Monumental Bilingual Wayfinding Totem (مكاتب الأساتذة • صالة • مصلى • شؤون الطالبات)",
+                "desc": "Floor-standing architectural wayfinding totem engineered with precision CNC laser-cut stainless steel Arabesque latticework, vibrant signal-yellow contrast backplate, and cast frosted acrylic directional blade."
+          },
+          {
+                "img": "assets/pnu/_DSC0214.JPG",
+                "tag": "3D Solid Dimensional Lettering",
+                "title": "Solid Brushed Stainless Steel Pin-Mounted Typography (SB3 Students...)",
+                "desc": "Macro-engineered dimensional solid metal letterforms pin-mounted with concealed standoffs on polished flamed granite wall, providing crisp shadow definition, longevity, and tactile prestige."
+          },
+          {
+                "img": "assets/pnu/_DSC0154.JPG",
+                "tag": "Sandstone Restroom Blade",
+                "title": "Limestone Wall-Mounted Restroom Blade Sign (دورات المياه للسيدات)",
+                "desc": "Dual-faced illuminated frosted acrylic blade with pictographic icon mounted on custom gold/yellow powder-coated bracket with traditional Islamic geometric filigree."
+          },
+          {
+                "img": "assets/pnu/_DSC0089.JPG",
+                "tag": "Curved Stainless Restroom Blade",
+                "title": "Curved Architectural Stainless Steel Blade Sign with Amber Core",
+                "desc": "Curved satin-finish stainless steel housing with precision laser-cut Arabesque perforation, internal amber reflector, and cantilevered frosted acrylic pictogram plate."
+          },
+          {
+                "img": "assets/pnu/_DSC0008.JPG",
+                "tag": "Exterior Pylon Monolith",
+                "title": "Campus Perimeter Primary Vehicular Directional Pylon",
+                "desc": "Heavy-duty steel and aluminium directional pylon guiding vehicular traffic between campus ring roads, collegiate zones, and central service faculties."
+          },
+          {
+                "img": "assets/pnu/_DSC0014.JPG",
+                "tag": "College Entrance Plaque",
+                "title": "College Faculty Entrance Dimensional Identification Plaque",
+                "desc": "Precision-etched architectural brushed stainless steel entrance signage with bilingual collegiate nomenclature and university emblem."
+          },
+          {
+                "img": "assets/pnu/_DSC0022.JPG",
+                "tag": "Pedestrian Monolith",
+                "title": "Central Promenade Pedestrian Guidance Monolith",
+                "desc": "Freestanding monolith with Arabesque laser-perforated accent band, bilingual destination arrows, and high-contrast charcoal finish."
+          },
+          {
+                "img": "assets/pnu/_DSC0027.JPG",
+                "tag": "Transit Connector Blade",
+                "title": "Monorail Station Pedestrian Wayfinding Blade",
+                "desc": "Suspended bilingual wayfinding blade guiding passenger circulation between the automated monorail transit station and collegiate concourses."
+          },
+          {
+                "img": "assets/pnu/_DSC0036.JPG",
+                "tag": "Auditorium Identification",
+                "title": "Grand Ceremonial Auditorium Dimensional Identification",
+                "desc": "3D fabricated satin brass and brushed steel typography pin-mounted to natural sandstone portico facade."
+          },
+          {
+                "img": "assets/pnu/_DSC0041.JPG",
+                "tag": "Directional Fingerpost",
+                "title": "Campus Plaza Multi-Directional Fingerpost Assembly",
+                "desc": "Modular architectural directional arms mounted on fluted cylindrical steel post with durable anti-glare finish for outdoor plazas."
+          },
+          {
+                "img": "assets/pnu/_DSC0045.JPG",
+                "tag": "Directory Monolith",
+                "title": "College Building Multi-Level Tenant & Department Directory",
+                "desc": "Interior lobby directory monolith featuring modular changeable magnetic slats and clear bilingual department indexing."
+          },
+          {
+                "img": "assets/pnu/_DSC0050.JPG",
+                "tag": "Corridor Blade Sign",
+                "title": "Double-Sided Illuminated Academic Corridor Blade Sign",
+                "desc": "Cantilevered frosted acrylic blade with internal high-CRI LED lighting and Arabesque filigree bracket detail."
+          },
+          {
+                "img": "assets/pnu/_DSC0052.JPG",
+                "tag": "Department Signage",
+                "title": "Student Affairs & Admissions Center Departmental Plaque",
+                "desc": "Brushed metal faceplate mounted on contrasting matte black acrylic backplate with ADA-compliant tactile room numbering."
+          },
+          {
+                "img": "assets/pnu/_DSC0062.JPG",
+                "tag": "Safety & Evacuation Map",
+                "title": "Code-Compliant Architectural Emergency Evacuation Schematic",
+                "desc": "High-clarity fire safety and emergency egress routing diagram mounted at primary corridor elevator junctions."
+          },
+          {
+                "img": "assets/pnu/_DSC0071.JPG",
+                "tag": "Library Concourse Guide",
+                "title": "Central Library Atrium Multi-Floor Wayfinding Totem",
+                "desc": "Floor-standing atrium directional totem orienting researchers and students toward digital archives, study halls, and reference collections."
+          },
+          {
+                "img": "assets/pnu/_DSC0077.JPG",
+                "tag": "Suspended Ceiling Blade",
+                "title": "High-Ceiling Concourse Suspended Directional Wayfinding",
+                "desc": "Aircraft-grade stainless steel cable suspended directional blade with bilingual typography for wide architectural hallways."
+          },
+          {
+                "img": "assets/pnu/_DSC0079.JPG",
+                "tag": "Tactile Room Plaque",
+                "title": "Faculty Office Tactile & Braille Identification Plaque",
+                "desc": "Grade 2 Braille room identification sign with tactile Arabic and English numerals, conforming to Saudi accessibility codes."
+          },
+          {
+                "img": "assets/pnu/_DSC0081.JPG",
+                "tag": "Interior Pylon Sign",
+                "title": "College Lobby Architectural Identity Pylon",
+                "desc": "Slimline interior monolith combining laser-cut brass accents, laser-etched university seal, and bilingual college title."
+          },
+          {
+                "img": "assets/pnu/_DSC0085.JPG",
+                "tag": "Restroom Wayfinding Blade",
+                "title": "Accessible Restroom Illuminated Directional Blade Sign",
+                "desc": "Wall-projecting LED-lit frosted acrylic blade featuring international accessibility pictograms and Islamic geometric filigree."
+          },
+          {
+                "img": "assets/pnu/_DSC0090.JPG",
+                "tag": "Perforated Metal Totem",
+                "title": "Arabesque Patterned Floor Totem with Directional Insets",
+                "desc": "Architectural totem featuring custom geometric Arabesque cutouts with internal contrast panels and directional arrows."
+          },
+          {
+                "img": "assets/pnu/_DSC0097.JPG",
+                "tag": "Elevator Vestibule Signage",
+                "title": "Elevator Core Level & Department Floor Indicator",
+                "desc": "Large-scale dimensional level number with comprehensive directory of collegiate floors and administrative offices."
+          },
+          {
+                "img": "assets/pnu/_DSC0111.JPG",
+                "tag": "Laboratory Wing Wayfinding",
+                "title": "Scientific & Health Sciences Research Laboratory Signage",
+                "desc": "Precision hazard warning and room classification signage with brushed stainless steel finish for laboratory corridors."
+          },
+          {
+                "img": "assets/pnu/_DSC0115.JPG",
+                "tag": "Exterior Campus Map",
+                "title": "Campus Masterplan Integrated Wayfinding Map Kiosk",
+                "desc": "Weatherproof exterior information monolith displaying high-resolution campus masterplan and color-coded collegiate zones."
+          },
+          {
+                "img": "assets/pnu/_DSC0127.JPG",
+                "tag": "Student Center Signage",
+                "title": "Student Activity Center Concourse Directional Sign",
+                "desc": "Vibrant yellow and charcoal accent directional sign guiding circulation to dining halls, recreational lounges, and sports facilities."
+          },
+          {
+                "img": "assets/pnu/_DSC0135.JPG",
+                "tag": "Gatehouse Monument",
+                "title": "Campus Main Security Gatehouse Entrance Monument",
+                "desc": "Heavy-duty stone and metal monument with illuminated university crest, security lane instructions, and gate designation."
+          },
+          {
+                "img": "assets/pnu/_DSC0142.JPG",
+                "tag": "Lecture Hall Directionals",
+                "title": "Tiered Lecture Hall & Amphitheatre Corridor Wayfinding",
+                "desc": "Wall-mounted directional band leading students to auditorium entry doors with high-contrast typography."
+          },
+          {
+                "img": "assets/pnu/_DSC0146.JPG",
+                "tag": "Monorail Platform Guidance",
+                "title": "Automated People Mover Platform Safety & Directional Signage",
+                "desc": "Transit platform overhead wayfinding with bilingual line designations, arrival doors, and accessibility boarding zones."
+          },
+          {
+                "img": "assets/pnu/_DSC0157.JPG",
+                "tag": "Parking Structure Signage",
+                "title": "Multi-Story Collegiate Parking Level & Zone Identification",
+                "desc": "Color-coded level indicators and pedestrian exit guidance designed for high visibility across parking decks."
+          },
+          {
+                "img": "assets/pnu/_DSC0165.JPG",
+                "tag": "Administration Building Plaque",
+                "title": "Rectorate & University Council Chambers Identification",
+                "desc": "Cast bronze architectural entrance plaque with deep-relief crest and micro-textured background finish."
+          },
+          {
+                "img": "assets/pnu/_DSC0176.JPG",
+                "tag": "Courtyard Wayfinding Monolith",
+                "title": "Open-Air Landscaped Courtyard Directional Monolith",
+                "desc": "UV-resistant and heat-tested directional monolith engineered to withstand Riyadh summer temperatures and dust exposure."
+          },
+          {
+                "img": "assets/pnu/_DSC0184.JPG",
+                "tag": "Conference Center Signage",
+                "title": "International Convention Center Wayfinding Suite",
+                "desc": "Sophisticated dark bronze and gold signage collection designed for the campus international conference complex."
+          },
+          {
+                "img": "assets/pnu/_DSC0187.JPG",
+                "tag": "Health Sciences Wayfinding",
+                "title": "King Abdullah University Hospital Pavilion Directionals",
+                "desc": "Clinical wayfinding blade system with color-coded medical department navigation for patients and visitors."
+          },
+          {
+                "img": "assets/pnu/_DSC0195.JPG",
+                "tag": "Sports Arena Monument",
+                "title": "Olympic Sports Complex & Indoor Arena Monument Sign",
+                "desc": "Dynamic architectural totem highlighting indoor aquatic center, gymnasium, and outdoor athletic track."
+          },
+          {
+                "img": "assets/pnu/_DSC0218.JPG",
+                "tag": "Dimensional Building Typography",
+                "title": "Solid Brushed Metal Exterior Building Identification",
+                "desc": "Individual solid stainless steel fabricated letters pin-mounted to stone facade with concealed weather-sealed anchor bolts."
+          },
+          {
+                "img": "assets/pnu/_DSC0219.JPG",
+                "tag": "Pedestrian Walkway Marker",
+                "title": "Covered Walkway Network Shaded Path Directional Marker",
+                "desc": "Column-mounted direction markers guiding students along shaded pedestrian walkways between academic clusters."
+          },
+          {
+                "img": "assets/pnu/_DSC0227.JPG",
+                "tag": "VIP Lounge Signage",
+                "title": "Campus Dignitary & VIP Protocol Lounge Identification",
+                "desc": "Polished gold and brushed metal architectural identification plate with bespoke geometric filigree border."
+          },
+          {
+                "img": "assets/pnu/_DSC0230.JPG",
+                "tag": "Service & Logistics Signage",
+                "title": "Campus Facilities, Maintenance & Logistics Gateway Sign",
+                "desc": "Industrial-grade directional and regulatory signage for facility access roads and central utility plant."
+          }
     ]
   }
 };
@@ -882,20 +1086,22 @@ function openGalleryModal(galleryKey = 'haram', index = 0) {
   activeGalleryKey = PROJECT_GALLERIES[galleryKey] ? galleryKey : 'haram';
   const gallery = PROJECT_GALLERIES[activeGalleryKey];
   
-  // Re-build thumbnail strip for current gallery
+  // Re-build thumbnail strip for current gallery with async loading
   const thumbStrip = document.getElementById('lightboxThumbStrip');
   if (thumbStrip) {
     thumbStrip.innerHTML = '';
+    const fragment = document.createDocumentFragment();
     gallery.items.forEach((item, i) => {
       const thumb = document.createElement('div');
       thumb.className = `lightbox-thumb ${i === index ? 'active' : ''}`;
       thumb.setAttribute('data-idx', i.toString());
-      thumb.innerHTML = `<img src="${item.img}" alt="${item.title}">`;
+      thumb.innerHTML = `<img src="${item.img}" alt="${item.title}" loading="lazy" decoding="async">`;
       thumb.addEventListener('click', () => {
         setLightboxSlide(i);
       });
-      thumbStrip.appendChild(thumb);
+      fragment.appendChild(thumb);
     });
+    thumbStrip.appendChild(fragment);
   }
 
   // Update modal badge & total
@@ -933,6 +1139,20 @@ function closeHaramModal() {
   document.body.style.overflow = 'auto';
 }
 
+function preloadAdjacentImages() {
+  const gallery = PROJECT_GALLERIES[activeGalleryKey] || PROJECT_GALLERIES.haram;
+  const total = gallery.items.length;
+  if (total <= 1) return;
+  const nextIdx = (activeGalleryIndex + 1) % total;
+  const prevIdx = (activeGalleryIndex - 1 + total) % total;
+  const nextImg = new Image();
+  nextImg.src = gallery.items[nextIdx].img;
+  const prevImg = new Image();
+  prevImg.src = gallery.items[prevIdx].img;
+}
+
+let thumbScrollRAF = null;
+
 function setLightboxSlide(idx) {
   const modal = document.getElementById('haramLightboxModal');
   if (!modal) return;
@@ -950,13 +1170,10 @@ function setLightboxSlide(idx) {
   const descEl = document.getElementById('lightboxDesc');
   const thumbs = document.querySelectorAll('.lightbox-thumb');
 
-  if (imgEl) {
-    imgEl.style.opacity = '0.3';
-    setTimeout(() => {
-      imgEl.src = current.img;
-      imgEl.alt = current.title;
-      imgEl.style.opacity = '1';
-    }, 120);
+  // Instant update of image and metadata with zero artificial lag
+  if (imgEl && imgEl.getAttribute('src') !== current.img) {
+    imgEl.src = current.img;
+    imgEl.alt = current.title;
   }
 
   if (counterEl) counterEl.textContent = (activeGalleryIndex + 1).toString();
@@ -968,6 +1185,25 @@ function setLightboxSlide(idx) {
   thumbs.forEach((thumb, i) => {
     thumb.classList.toggle('active', i === activeGalleryIndex);
   });
+
+  // Always keep highlighted active thumbnail in the exact horizontal center
+  if (thumbScrollRAF) cancelAnimationFrame(thumbScrollRAF);
+  thumbScrollRAF = requestAnimationFrame(() => {
+    const activeThumb = thumbs[activeGalleryIndex];
+    const thumbStrip = document.getElementById('lightboxThumbStrip');
+    if (activeThumb && thumbStrip && thumbStrip.clientWidth > 0) {
+      const stripWidth = thumbStrip.clientWidth;
+      const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
+      const targetLeft = thumbCenter - (stripWidth / 2);
+      thumbStrip.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: 'smooth'
+      });
+    }
+  });
+
+  // Preload adjacent images in browser cache for instantaneous back/forth navigation
+  preloadAdjacentImages();
 }
 
 function initHaramLightboxModal() {
@@ -1066,195 +1302,246 @@ function initHaramLightboxModal() {
 }
 
 /* --------------------------------------------------------------------------
-   9. SIGNAGE 2-UP CARD TRACK — ORANGE BG SLIDING GALLERY
+   9. SIGNAGE 2-UP CARD TRACK — ORANGE/BLACK BG SLIDING GALLERY WITH CURSOR FOLLOWER
    -------------------------------------------------------------------------- */
 function initDynamicSignageMarquee() {
-  const showcase = document.getElementById('signageFullscreenShowcase');
-  if (!showcase) return;
+  const showcases = document.querySelectorAll('.signage-fullscreen-showcase');
+  if (!showcases.length) return;
 
-  // Build pool: one representative image per project
-  const pool = [];
-
-  Object.keys(PROJECT_GALLERIES).forEach(galleryKey => {
-    const gallery = PROJECT_GALLERIES[galleryKey];
-    const city = gallery.city || 'Saudi Arabia';
-    const link = gallery.link || 'portfolio.html';
-    if (gallery.items && gallery.items.length > 0) {
-      const item = gallery.items[0];
-      const cleanTitle = item.title.split('(')[0].replace(/[•\-–]/g, ' ').trim();
-      pool.push({ img: item.img, title: cleanTitle, location: `${city}, Saudi Arabia`, link });
+  // Build pool: strictly one primary cover photo per unique project (no duplicates)
+  const pool = [
+    {
+      img: 'assets/pnu-campus-monument.jpg',
+      title: 'Princess Nourah University — Mega-Campus',
+      location: 'Riyadh, Saudi Arabia',
+      target: 'pnu',
+      index: 0
+    },
+    {
+      img: 'assets/kaia-private-aviation-terminal.jpg',
+      title: 'KAIA Private Aviation — Jet Aviation Terminal',
+      location: 'Jeddah, Saudi Arabia',
+      target: 'kaia',
+      index: 0
+    },
+    {
+      img: 'assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg',
+      title: 'Grand Mosque Piazzas & Transit Corridors',
+      location: 'Makkah, Saudi Arabia',
+      target: 'haram',
+      index: 0
+    },
+    {
+      img: 'assets/dallah-albarakah-hq.jpg',
+      title: 'Dallah Al-Barakah Investment Holding HQ',
+      location: 'Jeddah, Saudi Arabia',
+      target: 'dallah',
+      index: 0
+    },
+    {
+      img: 'assets/galleria-hotel-facade.jpg',
+      title: 'The Galleria Hotel & Luxury Commercial Suites',
+      location: 'Jeddah, Saudi Arabia',
+      target: 'galleria',
+      index: 0
     }
-  });
-
-  // Curated extras
-  const extras = [
-    { img: 'assets/hero-station-a2.jpg', title: 'Station A2 — Metro Wayfinding Facade', location: 'Riyadh, Saudi Arabia', link: 'portfolio.html' },
-    { img: 'assets/haram-seasonal/haram-highmast-directional.jpg', title: 'Haram Highmast Directional Signage', location: 'Makkah, Saudi Arabia', link: 'portfolio.html' },
-    { img: 'assets/pnu/_DSC0089.JPG', title: 'Princess Nourah University — Campus Wayfinding', location: 'Riyadh, Saudi Arabia', link: 'portfolio.html' },
-    { img: 'assets/pnu/_DSC0154.JPG', title: 'PNU — Monumental Entrance Signage', location: 'Riyadh, Saudi Arabia', link: 'portfolio.html' },
-    { img: 'assets/KAIA/IMG_9228-2.jpg', title: 'KAIA Terminal — Architectural Pylons', location: 'Jeddah, Saudi Arabia', link: 'portfolio.html' },
-    { img: 'assets/galleria hotel/IMG-20230925-WA0066.jpg', title: 'Galleria Hotel — Luxury Interior Signage', location: 'Jeddah, Saudi Arabia', link: 'portfolio.html' }
   ];
-  extras.forEach(e => pool.push(e));
-
-  // Shuffle
-  for (let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
 
   if (pool.length < 2) return;
 
-  // Build card HTML
-  const buildCard = (item) => `
-    <div class="sfs-card">
-      <img src="${item.img}" alt="${item.title}" class="sfs-img" loading="lazy">
-      <div class="sfs-caption">
-        <div class="sfs-title">${item.title}</div>
-        <div class="sfs-location">${item.location}</div>
-      </div>
-    </div>`;
-
-  const track = document.getElementById('sfsTrack');
-  const dotsEl = document.getElementById('sfsDots');
-  const navBtn = document.getElementById('sfsNavBtn');
-
-  if (!track) return;
-
-  // Inject all cards
-  track.innerHTML = pool.map(buildCard).join('');
-
-  // Sizing function: strictly 2 images visible on desktop (1 on mobile), true 1:1 square
-  const updateCardSizes = () => {
+  showcases.forEach((showcase) => {
+    const track = showcase.querySelector('.sfs-track');
+    const dotsEl = showcase.querySelector('.sfs-dots');
+    const navBtn = showcase.querySelector('.sfs-nav-btn');
+    const follower = showcase.querySelector('.sfs-cursor-follower');
     const viewport = showcase.querySelector('.sfs-viewport');
-    if (!viewport) return;
-    const viewportWidth = viewport.clientWidth;
-    const computedTrackStyle = window.getComputedStyle(track);
-    const padLeft = parseFloat(computedTrackStyle.paddingLeft) || 0;
-    const padRight = parseFloat(computedTrackStyle.paddingRight) || 0;
-    const gap = parseFloat(computedTrackStyle.gap) || 16;
-    
-    const isMobile = window.innerWidth <= 768;
-    const imagesVisible = isMobile ? 1 : 2;
-    
-    const availableWidth = viewportWidth - padLeft - padRight - (gap * (imagesVisible - 1));
-    const cardWidth = Math.floor(availableWidth / imagesVisible);
-    
-    track.querySelectorAll('.sfs-card').forEach(card => {
-      card.style.width = `${cardWidth}px`;
-      card.style.height = `${cardWidth}px`;
-      card.style.flex = `0 0 ${cardWidth}px`;
-    });
-  };
 
-  updateCardSizes();
+    if (!track) return;
 
-  // Total pages = ceil(pool.length / 2)
-  const isMobile = () => window.innerWidth <= 768;
-  const imagesPerPage = () => (isMobile() ? 1 : 2);
-  const totalPages = Math.ceil(pool.length / 2);
-  let currentPage = 0;
+    // Build card HTML
+    const buildCard = (item) => `
+      <div class="sfs-card" data-gallery-target="${item.target}" data-gallery-index="${item.index}">
+        <img src="${item.img}" alt="${item.title}" class="sfs-img" loading="lazy" draggable="false">
+        <div class="sfs-caption">
+          <div class="sfs-title">${item.title}</div>
+          <div class="sfs-location">${item.location}</div>
+        </div>
+      </div>`;
 
-  // Build dots
-  let dotsHtml = '';
-  for (let i = 0; i < totalPages; i++) {
-    dotsHtml += `<button class="sfs-dot${i === 0 ? ' active' : ''}" data-page="${i}" aria-label="Page ${i + 1}"></button>`;
-  }
-  if (dotsEl) dotsEl.innerHTML = dotsHtml;
+    // Duplicate pool 3 times for a seamless infinite loop ring
+    const sequence = [...pool, ...pool, ...pool];
+    track.innerHTML = sequence.map(buildCard).join('');
 
-  const goToPage = (page) => {
-    const allDots = showcase.querySelectorAll('.sfs-dot');
-    if (allDots[currentPage]) allDots[currentPage].classList.remove('active');
+    let cardWidth = 0;
+    let gap = 16;
+    let singleSetWidth = 0;
 
-    currentPage = (page + totalPages) % totalPages;
+    // Sizing function: strictly 2 images visible on desktop (1 on mobile), true 1:1 square
+    const updateCardSizes = () => {
+      if (!viewport) return;
+      const viewportWidth = viewport.clientWidth;
+      gap = 16;
+      const isMobile = window.innerWidth <= 768;
+      const imagesVisible = isMobile ? 1 : 2;
 
-    const firstCard = track.querySelector('.sfs-card');
-    if (!firstCard) return;
-    const cardWidth = firstCard.getBoundingClientRect().width;
-    const gap = parseFloat(window.getComputedStyle(track).gap) || 16;
-    const perPage = imagesPerPage();
+      const availableWidth = viewportWidth - (gap * (imagesVisible - 1));
+      cardWidth = Math.floor(availableWidth / imagesVisible);
 
-    track.style.transform = `translateX(-${currentPage * perPage * (cardWidth + gap)}px)`;
+      track.querySelectorAll('.sfs-card').forEach(card => {
+        card.style.width = `${cardWidth}px`;
+        card.style.height = `${cardWidth}px`;
+        card.style.flex = `0 0 ${cardWidth}px`;
+      });
 
-    if (allDots[currentPage]) allDots[currentPage].classList.add('active');
-  };
+      singleSetWidth = pool.length * (cardWidth + gap);
+    };
 
-  // Floating cursor follower (< >) - ACTIVE ONLY IN THIS SECTION
-  const follower = document.getElementById('sfsCursorFollower');
-  const viewport = showcase.querySelector('.sfs-viewport');
-
-  if (follower && viewport) {
-    viewport.addEventListener('mouseenter', () => {
-      follower.classList.add('active');
-    });
-
-    viewport.addEventListener('mouseleave', () => {
-      follower.classList.remove('active');
-      follower.classList.remove('clicking');
-    });
-
-    viewport.addEventListener('mousemove', (e) => {
-      follower.style.setProperty('--x', `${e.clientX}px`);
-      follower.style.setProperty('--y', `${e.clientY}px`);
-    });
-
-    viewport.addEventListener('mousedown', () => {
-      follower.classList.add('clicking');
-    });
-
-    window.addEventListener('mouseup', () => {
-      follower.classList.remove('clicking');
-    });
-
-    // Clicking on viewport advances or goes back based on left/right half
-    viewport.addEventListener('click', (e) => {
-      if (e.target.closest('button, a')) return;
-      const rect = viewport.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      clearInterval(autoTimer);
-      if (clickX < rect.width / 2) {
-        goToPage(currentPage - 1);
-      } else {
-        goToPage(currentPage + 1);
-      }
-      autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
-    });
-  }
-
-  // Nav button fallback for touch devices
-  if (navBtn) {
-    navBtn.addEventListener('click', () => {
-      clearInterval(autoTimer);
-      goToPage(currentPage + 1);
-      autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
-    });
-  }
-
-  // Dot clicks
-  showcase.addEventListener('click', (e) => {
-    const dot = e.target.closest('.sfs-dot');
-    if (!dot) return;
-    clearInterval(autoTimer);
-    goToPage(parseInt(dot.dataset.page));
-    autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
-  });
-
-  // Window resize handler: recalculate exact 2-card geometry
-  window.addEventListener('resize', () => {
     updateCardSizes();
-    goToPage(currentPage);
-  });
 
-  // Auto-advance every 6s
-  let autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
+    // Continuous automated marquee moving smoothly from left to right (+X direction)
+    const baseSpeed = 48; // pixels per second
+    let currentX = -singleSetWidth;
+    let nudgeVelocity = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragLastX = 0;
+    let dragThresholdPassed = false;
+    let lastTime = performance.now();
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      clearInterval(autoTimer);
-    } else {
-      clearInterval(autoTimer);
-      autoTimer = setInterval(() => goToPage(currentPage + 1), 6000);
+    const animateMarquee = (now) => {
+      let dt = (now - lastTime) / 1000;
+      lastTime = now;
+      if (dt > 0.1) dt = 0.1;
+
+      if (!isDragging) {
+        // Continuous automatic smooth scrolling from left to right without stopping
+        currentX += baseSpeed * dt;
+
+        // Apply smooth manual click nudge
+        if (Math.abs(nudgeVelocity) > 0.5) {
+          const step = nudgeVelocity * Math.min(1, 8 * dt);
+          currentX += step;
+          nudgeVelocity -= step;
+        } else {
+          nudgeVelocity = 0;
+        }
+      }
+
+      // Seamless infinite wrapping in both directions
+      if (singleSetWidth > 0) {
+        while (currentX >= 0) {
+          currentX -= singleSetWidth;
+        }
+        while (currentX < -singleSetWidth) {
+          currentX += singleSetWidth;
+        }
+      }
+
+      track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      requestAnimationFrame(animateMarquee);
+    };
+
+    requestAnimationFrame(animateMarquee);
+
+    // Floating cursor follower (< >) - ACTIVE ONLY IN THIS SECTION
+    if (follower && viewport) {
+      if (follower.parentElement !== document.body) {
+        document.body.appendChild(follower);
+      }
+
+      let isTracking = false;
+
+      const handlePointerMove = (e) => {
+        const rect = viewport.getBoundingClientRect();
+        const inside = (
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom
+        );
+
+        if (inside || isDragging) {
+          follower.style.setProperty('--x', `${e.clientX}px`);
+          follower.style.setProperty('--y', `${e.clientY}px`);
+
+          if (!isTracking) {
+            isTracking = true;
+            follower.classList.add('active');
+          }
+
+          if (isDragging) {
+            const delta = e.clientX - dragLastX;
+            if (Math.abs(e.clientX - dragStartX) > 8) {
+              dragThresholdPassed = true;
+            }
+            currentX += delta;
+            dragLastX = e.clientX;
+          }
+        } else if (isTracking && !isDragging) {
+          isTracking = false;
+          follower.classList.remove('active');
+          follower.classList.remove('clicking');
+        }
+      };
+
+      window.addEventListener('mousemove', handlePointerMove, { passive: true });
+
+      viewport.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button, a')) return;
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragLastX = e.clientX;
+        dragThresholdPassed = false;
+        follower.classList.add('clicking');
+      });
+
+      window.addEventListener('mouseup', (e) => {
+        follower.classList.remove('clicking');
+        if (!isDragging) return;
+        isDragging = false;
+
+        const rect = viewport.getBoundingClientRect();
+        const inside = (
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom
+        );
+        if (!inside) {
+          isTracking = false;
+          follower.classList.remove('active');
+        }
+      });
+
+      // Manual navigation: clicking on left or right side of the section moves the images
+      viewport.addEventListener('click', (e) => {
+        if (e.target.closest('button, a')) return;
+        if (dragThresholdPassed) return;
+
+        const rect = viewport.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const shiftStep = cardWidth + gap;
+
+        if (clickX < rect.width / 2) {
+          // Clicked on left side -> move images left
+          nudgeVelocity -= shiftStep;
+        } else {
+          // Clicked on right side -> move images right
+          nudgeVelocity += shiftStep;
+        }
+      });
     }
+
+    // Window resize handler: recalculate exact 2-card geometry
+    window.addEventListener('resize', () => {
+      updateCardSizes();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        lastTime = performance.now();
+      }
+    });
   });
 }
 

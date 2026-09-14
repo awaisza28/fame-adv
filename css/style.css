@@ -1785,17 +1785,18 @@ h4 { font-size: 1.25rem; }
   position: relative;
   width: 100%;
   overflow: hidden;
-  cursor: none;
+  cursor: default;
 }
 
-/* The sliding track — shifts left/right on nav */
+/* The sliding track — continuous smooth marquee */
 .sfs-track {
   display: flex;
   gap: 16px;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
-  padding: 0 clamp(2rem, 5vw, 5.5rem);
+  padding: 0;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Each image card — SQUARE SHAPE (1:1 aspect ratio), strictly 2 cards per view */
@@ -1808,6 +1809,8 @@ h4 { font-size: 1.25rem; }
   overflow: hidden;
   border-radius: 4px;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* The photo */
@@ -1875,29 +1878,30 @@ h4 { font-size: 1.25rem; }
   position: fixed;
   top: 0;
   left: 0;
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #FFFFFF;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  transform: translate3d(var(--x, -100px), var(--y, -100px), 0) translate(-50%, -50%) scale(0.3);
-  transition: opacity 0.22s ease, transform 0.08s ease-out;
+  transform: translate3d(calc(var(--x, -100px) - 28px), calc(var(--y, -100px) - 28px), 0);
+  scale: 0.3;
+  transition: opacity 0.2s ease, scale 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
 .sfs-cursor-follower.active {
   opacity: 1;
-  transform: translate3d(var(--x, -100px), var(--y, -100px), 0) translate(-50%, -50%) scale(1);
+  scale: 1;
 }
 
 .sfs-cursor-follower.clicking {
-  transform: translate3d(var(--x, -100px), var(--y, -100px), 0) translate(-50%, -50%) scale(0.85);
+  scale: 0.88;
 }
 
 .sfs-cursor-follower svg {
@@ -1905,34 +1909,10 @@ h4 { font-size: 1.25rem; }
   pointer-events: none;
 }
 
-/* Arrow navigation button — fallback for touch devices */
-.sfs-nav-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  display: none; /* Hidden on desktop since follower handles it */
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  z-index: 20;
-  transition: background 0.25s ease, transform 0.25s ease;
-  color: #FFFFFF;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(8px);
-}
-
-.sfs-nav-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: translate(-50%, -50%) scale(1.06);
+/* Navigation controls hidden as per design specification */
+.sfs-nav-btn,
+.sfs-dots {
+  display: none !important;
 }
 
 @media (pointer: coarse) {
@@ -1942,39 +1922,14 @@ h4 { font-size: 1.25rem; }
   .sfs-cursor-follower {
     display: none !important;
   }
-  .sfs-nav-btn {
-    display: flex !important;
-  }
 }
 
-/* Bottom row: dots + discover */
+/* Bottom row: discover link aligned nicely */
 .sfs-bottom-row {
   padding: 1.75rem clamp(2rem, 5vw, 5.5rem) 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.sfs-dots {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.sfs-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.sfs-dot.active {
-  background: #FFFFFF;
-  transform: scale(1.4);
+  justify-content: flex-end;
 }
 
 .sfs-discover-link {
@@ -2460,10 +2415,10 @@ h4 { font-size: 1.25rem; }
 .lightbox-thumb-strip {
   display: flex;
   gap: 0.65rem;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 0.35rem;
-  padding: 0.4rem 0.65rem;
+  padding: 0.4rem calc(50% - 30px);
   border: none;
   background: rgba(6, 12, 28, 0.72);
   backdrop-filter: blur(16px);
@@ -2473,6 +2428,15 @@ h4 { font-size: 1.25rem; }
   overflow-x: auto;
   max-width: 90vw;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.lightbox-thumb-strip::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .lightbox-thumb {
