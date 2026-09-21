@@ -261,7 +261,7 @@ function initPortfolioFilter() {
       });
     });
 
-    // Check URL query param for deep linking (e.g. portfolio.html?city=jeddah)
+    // Check URL query param for deep linking (e.g. portfolio.html?city=jeddah or portfolio.html?project=haram)
     const urlParams = new URLSearchParams(window.location.search);
     const cityParam = urlParams.get('city');
     if (cityParam) {
@@ -269,6 +269,12 @@ function initPortfolioFilter() {
       if (targetTab) {
         targetTab.click();
       }
+    }
+    const projectParam = urlParams.get('project');
+    if (projectParam && typeof openGalleryModal === 'function') {
+      setTimeout(() => {
+        openGalleryModal(projectParam.toLowerCase(), 0);
+      }, 150);
     }
   }
 
@@ -1202,8 +1208,16 @@ function openGalleryModal(galleryKey = 'haram', index = 0) {
   const totalEl = document.getElementById('lightboxTotalCount');
   if (totalEl) totalEl.textContent = gallery.items.length.toString();
 
+  // Deactivate follower so it won't float over the open modal
+  const follower = document.getElementById('sfsCursorFollower');
+  if (follower) {
+    follower.classList.remove('active');
+    follower.classList.remove('clicking');
+  }
+
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
   setLightboxSlide(index);
 }
 
@@ -1232,6 +1246,7 @@ function closeHaramModal() {
   if (!modal) return;
   modal.classList.remove('active');
   document.body.style.overflow = 'auto';
+  document.body.classList.remove('modal-open');
 }
 
 function preloadAdjacentImages() {
@@ -1472,8 +1487,14 @@ function initDynamicSignageMarquee() {
 
     // Build card HTML
     const buildCard = (item) => `
-      <div class="sfs-card" data-gallery-target="${item.target}" data-gallery-index="${item.index}">
+      <div class="sfs-card" data-gallery-target="${item.target}" data-gallery-index="${item.index}" role="button" tabindex="0" aria-label="Open ${item.title} gallery">
         <img src="${item.img}" alt="${item.title}" class="sfs-img" loading="lazy" draggable="false">
+        <div class="sfs-card-badge">
+          <span>Open Gallery</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div class="sfs-caption">
           <div class="sfs-title">${item.title}</div>
           <div class="sfs-location">${item.location}</div>
@@ -1525,7 +1546,10 @@ function initDynamicSignageMarquee() {
       lastTime = now;
       if (dt > 0.1) dt = 0.1;
 
-      if (!isDragging) {
+      const modal = document.getElementById('haramLightboxModal');
+      const isModalOpen = modal && modal.classList.contains('active');
+
+      if (!isDragging && !isModalOpen) {
         // Continuous automatic smooth scrolling from left to right without stopping
         currentX += baseSpeed * dt;
 
@@ -1564,6 +1588,16 @@ function initDynamicSignageMarquee() {
       let isTracking = false;
 
       const handlePointerMove = (e) => {
+        const modal = document.getElementById('haramLightboxModal');
+        if (modal && modal.classList.contains('active')) {
+          if (isTracking) {
+            isTracking = false;
+            follower.classList.remove('active');
+            follower.classList.remove('clicking');
+          }
+          return;
+        }
+
         const rect = viewport.getBoundingClientRect();
         const inside = (
           e.clientX >= rect.left &&
@@ -1583,7 +1617,7 @@ function initDynamicSignageMarquee() {
 
           if (isDragging) {
             const delta = e.clientX - dragLastX;
-            if (Math.abs(e.clientX - dragStartX) > 8) {
+            if (Math.abs(e.clientX - dragStartX) > 10) {
               dragThresholdPassed = true;
             }
             currentX += delta;
@@ -1599,7 +1633,7 @@ function initDynamicSignageMarquee() {
       window.addEventListener('mousemove', handlePointerMove, { passive: true });
 
       viewport.addEventListener('mousedown', (e) => {
-        if (e.target.closest('button, a')) return;
+        if (e.target.closest('button, a:not(.sfs-card)')) return;
         isDragging = true;
         dragStartX = e.clientX;
         dragLastX = e.clientX;
@@ -1625,11 +1659,53 @@ function initDynamicSignageMarquee() {
         }
       });
 
-      // Manual navigation: clicking on left or right side of the section moves the images
-      viewport.addEventListener('click', (e) => {
-        if (e.target.closest('button, a')) return;
-        if (dragThresholdPassed) return;
+      // Touch drag and tap support for mobile screens
+      let touchStartX = 0;
+      viewport.addEventListener('touchstart', (e) => {
+        if (!e.touches || !e.touches.length) return;
+        if (e.target.closest('button, a:not(.sfs-card)')) return;
+        isDragging = true;
+        dragStartX = e.touches[0].clientX;
+        dragLastX = e.touches[0].clientX;
+        touchStartX = e.touches[0].clientX;
+        dragThresholdPassed = false;
+      }, { passive: true });
 
+      viewport.addEventListener('touchmove', (e) => {
+        if (!isDragging || !e.touches || !e.touches.length) return;
+        const currentTouchX = e.touches[0].clientX;
+        const delta = currentTouchX - dragLastX;
+        if (Math.abs(currentTouchX - touchStartX) > 10) {
+          dragThresholdPassed = true;
+        }
+        currentX += delta;
+        dragLastX = currentTouchX;
+      }, { passive: true });
+
+      viewport.addEventListener('touchend', () => {
+        isDragging = false;
+      }, { passive: true });
+
+      // Direct project gallery opening or manual shift navigation
+      viewport.addEventListener('click', (e) => {
+        if (e.target.closest('button, a:not(.sfs-card)')) return;
+        
+        // If user dragged more than 10px, don't trigger click action
+        if (dragThresholdPassed) {
+          dragThresholdPassed = false;
+          return;
+        }
+
+        // Direct project gallery opening when clicking any project card
+        const card = e.target.closest('.sfs-card');
+        if (card) {
+          const target = card.getAttribute('data-gallery-target') || 'haram';
+          const index = parseInt(card.getAttribute('data-gallery-index') || '0', 10);
+          openGalleryModal(target, index);
+          return;
+        }
+
+        // Clicking on empty background margins shifts images
         const rect = viewport.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const shiftStep = cardWidth + gap;
@@ -1640,6 +1716,19 @@ function initDynamicSignageMarquee() {
         } else {
           // Clicked on right side -> move images right
           nudgeVelocity += shiftStep;
+        }
+      });
+
+      // Keyboard accessibility
+      viewport.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const card = (document.activeElement && document.activeElement.closest('.sfs-card')) || e.target.closest('.sfs-card');
+          if (card) {
+            e.preventDefault();
+            const target = card.getAttribute('data-gallery-target') || 'haram';
+            const index = parseInt(card.getAttribute('data-gallery-index') || '0', 10);
+            openGalleryModal(target, index);
+          }
         }
       });
     }

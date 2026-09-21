@@ -178,7 +178,7 @@
 
       <div class="portfolio-grid">
         <!-- REAL PROJECT 1: KAIA AIRPORT -->
-        <div class="portfolio-card">
+        <div class="portfolio-card" data-gallery-target="kaia" data-gallery-index="0" style="cursor: pointer;">
           <div class="portfolio-img-wrap" style="aspect-ratio: 16 / 11; overflow: hidden; background: #080b14;">
             <img src="assets/kaia-private-aviation-terminal.jpg" alt="KAIA Private Aviation Jet Aviation Terminal" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
@@ -188,15 +188,15 @@
             </div>
             <h3 class="portfolio-title">KAIA Private Aviation — Jet Aviation Terminal</h3>
             <p class="portfolio-desc">General Aviation Terminal entrance canopy, granite monument & directional network.</p>
-            <a href="portfolio.html?city=jeddah" class="rsm-arrow-link">
-              <span>View Project</span>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-signage-gallery-btn" data-gallery-target="kaia" data-gallery-index="0">
+              <span>View Gallery</span>
               <span class="arrow-glyph">›</span>
             </a>
           </div>
         </div>
 
         <!-- REAL PROJECT 2: DALLAH AL-BARAKAH HQ -->
-        <div class="portfolio-card">
+        <div class="portfolio-card" data-gallery-target="dallah" data-gallery-index="0" style="cursor: pointer;">
           <div class="portfolio-img-wrap" style="aspect-ratio: 16 / 11; overflow: hidden; background: #080b14;">
             <img src="assets/dallah-albarakah-hq.jpg" alt="Dallah Al-Barakah HQ Saleh Kamel Business Center" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
@@ -206,15 +206,15 @@
             </div>
             <h3 class="portfolio-title">Saleh Kamel Business Center</h3>
             <p class="portfolio-desc">Monumental 3D electroplated gold facade & multi-level basement parking wayfinding.</p>
-            <a href="portfolio.html?city=jeddah" class="rsm-arrow-link">
-              <span>View Project</span>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-signage-gallery-btn" data-gallery-target="dallah" data-gallery-index="0">
+              <span>View Gallery</span>
               <span class="arrow-glyph">›</span>
             </a>
           </div>
         </div>
 
         <!-- REAL PROJECT 3: THE GALLERIA HOTEL -->
-        <div class="portfolio-card">
+        <div class="portfolio-card" data-gallery-target="galleria" data-gallery-index="0" style="cursor: pointer;">
           <div class="portfolio-img-wrap" style="aspect-ratio: 16 / 11; overflow: hidden; background: #080b14;">
             <img src="assets/galleria-hotel-facade.jpg" alt="The Galleria Hotel Jeddah" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
@@ -224,15 +224,15 @@
             </div>
             <h3 class="portfolio-title">The Galleria Hotel Jeddah</h3>
             <p class="portfolio-desc">5-star bespoke room identification, tactile braille suites & corridor directionals.</p>
-            <a href="portfolio.html?city=jeddah" class="rsm-arrow-link">
-              <span>View Project</span>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-signage-gallery-btn" data-gallery-target="galleria" data-gallery-index="0">
+              <span>View Gallery</span>
               <span class="arrow-glyph">›</span>
             </a>
           </div>
         </div>
 
         <!-- REAL PROJECT 4: SHERATON HOTEL MAKKAH -->
-        <div class="portfolio-card">
+        <div class="portfolio-card" data-gallery-target="sheraton" data-gallery-index="0" style="cursor: pointer;">
           <div class="portfolio-img-wrap" style="aspect-ratio: 16 / 11; overflow: hidden; background: #080b14;">
             <img src="assets/sheraton-hotel-makkah.jpg" alt="Sheraton Hotel Makkah Jabal Al Kaaba Rooftop Helipad Signage" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
@@ -242,8 +242,8 @@
             </div>
             <h3 class="portfolio-title">Sheraton Hotel Makkah — Jabal Al Kaaba</h3>
             <p class="portfolio-desc">5-star high-rise crown skyline branding, vertical tower facade identity & elevator lobby wayfinding.</p>
-            <a href="portfolio.html?city=makkah" class="rsm-arrow-link">
-              <span>View Project</span>
+            <a href="javascript:void(0)" class="rsm-arrow-link open-signage-gallery-btn" data-gallery-target="sheraton" data-gallery-index="0">
+              <span>View Gallery</span>
               <span class="arrow-glyph">›</span>
             </a>
           </div>
@@ -398,6 +398,38 @@
   </footer>
   </div>
 
-  <script src="js/main.js?v=7.6"></script>
+  <!-- ARCHITECTURAL LIGHTBOX MODAL -->
+  <div class="haram-lightbox-modal" id="haramLightboxModal" aria-hidden="true" role="dialog">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close Gallery Modal">✕</button>
+      
+      <div class="lightbox-header-bar">
+        <div class="lightbox-counter"><span id="lightboxCurrentIdx">1</span> / <span id="lightboxTotalCount">8</span> Photos</div>
+        <div class="lightbox-badge" id="lightboxModalBadge">Grand Mosque • Haram Temporary Signage</div>
+      </div>
+
+      <div class="lightbox-main-view">
+        <button type="button" class="lightbox-nav-btn prev-btn" id="lightboxPrevBtn" aria-label="Previous image">❮</button>
+        
+        <div class="lightbox-image-stage">
+          <img src="assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg" id="lightboxActiveImg" alt="Signage Gallery Image" class="lightbox-img">
+        </div>
+
+        <button type="button" class="lightbox-nav-btn next-btn" id="lightboxNextBtn" aria-label="Next image">❯</button>
+      </div>
+
+      <div class="lightbox-info-pane">
+        <div class="lightbox-tag" id="lightboxTag">Courtyard Pillar Totems</div>
+        <h3 class="lightbox-title" id="lightboxTitle">King Abdul Aziz Gate (No. 01) & Ajyad Gate (No. 03)</h3>
+        <p class="lightbox-desc" id="lightboxDesc">Directional monolith pillars with compliance and prohibition pictograms in the southern piazza.</p>
+      </div>
+
+      <!-- Thumbnail Selector Row -->
+      <div class="lightbox-thumb-strip" id="lightboxThumbStrip"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=7.7"></script>
 </body>
 </html>

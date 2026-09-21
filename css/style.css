@@ -1811,6 +1811,52 @@ h4 { font-size: 1.25rem; }
   box-sizing: border-box;
   user-select: none;
   -webkit-user-select: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Sleek floating badge on hover indicating direct project gallery */
+.sfs-card-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  background: rgba(8, 12, 24, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.sfs-card:hover .sfs-card-badge,
+.sfs-card:focus-visible .sfs-card-badge {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(255, 183, 3, 0.6);
+  color: #FFB703;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 183, 3, 0.25);
+}
+
+.sfs-card-badge svg {
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.sfs-card:hover .sfs-card-badge svg {
+  transform: translate(2px, -2px);
 }
 
 /* The photo */
@@ -2162,7 +2208,7 @@ h4 { font-size: 1.25rem; }
 .haram-lightbox-modal {
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 100000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2175,6 +2221,15 @@ h4 { font-size: 1.25rem; }
 .haram-lightbox-modal.active {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* Ensure custom cursor follower is completely hidden when lightbox modal is active */
+body.modal-open .sfs-cursor-follower,
+.haram-lightbox-modal.active ~ .sfs-cursor-follower {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 .lightbox-backdrop {
