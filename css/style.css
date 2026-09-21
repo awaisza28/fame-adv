@@ -2544,7 +2544,7 @@ body.modal-open .sfs-cursor-follower,
 
 @media (max-width: 768px) {
   .lightbox-container {
-    padding: 0.75rem;
+    padding: 0.75rem 0.5rem;
   }
   .lightbox-header-bar {
     padding: 0 3.5rem 0.25rem 0.25rem;
@@ -2552,16 +2552,23 @@ body.modal-open .sfs-cursor-follower,
   .lightbox-badge {
     display: none;
   }
+  /* Remove arrow buttons from mobile — hand swipe navigation enabled */
   .lightbox-nav-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 1.1rem;
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
   }
-  .lightbox-nav-btn.prev-btn { left: 0.25rem; }
-  .lightbox-nav-btn.next-btn { right: 0.25rem; }
+  .lightbox-main-view {
+    touch-action: pan-y pinch-zoom;
+    width: 100%;
+  }
+  .lightbox-image-stage {
+    padding: 0.25rem;
+  }
   .lightbox-img {
-    max-height: calc(100vh - 170px);
-    max-width: 95vw;
+    max-height: calc(100vh - 180px);
+    max-width: 98vw;
   }
   .lightbox-title {
     font-size: 0.82rem;
@@ -2570,6 +2577,15 @@ body.modal-open .sfs-cursor-follower,
   .lightbox-thumb {
     width: 48px;
     height: 34px;
+  }
+}
+
+@media (pointer: coarse) and (max-width: 1024px) {
+  .lightbox-nav-btn {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
   }
 }
 

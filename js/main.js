@@ -1419,6 +1419,87 @@ function initHaramLightboxModal() {
       setLightboxSlide(activeGalleryIndex + 1);
     }
   });
+
+  // Touch swipe navigation with hands for mobile screens
+  const swipeArea = modal.querySelector('.lightbox-container') || modal;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+  let touchStartTime = 0;
+  let isSwiping = false;
+
+  swipeArea.addEventListener('touchstart', (e) => {
+    if (e.target.closest('#lightboxCloseBtn, .lightbox-thumb-strip, .lightbox-thumb, button, a')) return;
+    if (!e.touches || e.touches.length === 0) return;
+
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchEndX = touchStartX;
+    touchEndY = touchStartY;
+    touchStartTime = Date.now();
+    isSwiping = true;
+
+    const activeImg = document.getElementById('lightboxActiveImg');
+    if (activeImg) {
+      activeImg.style.transition = 'none';
+    }
+  }, { passive: true });
+
+  swipeArea.addEventListener('touchmove', (e) => {
+    if (!isSwiping || !e.touches || e.touches.length === 0) return;
+
+    touchEndX = e.touches[0].clientX;
+    touchEndY = e.touches[0].clientY;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const activeImg = document.getElementById('lightboxActiveImg');
+
+    // Give real-time visual swipe feedback when horizontal gesture is dominant
+    if (Math.abs(deltaX) > Math.abs(deltaY) && activeImg) {
+      activeImg.style.transform = `translateX(${deltaX * 0.75}px) scale(0.985)`;
+      activeImg.style.opacity = Math.max(0.45, 1 - Math.abs(deltaX) / 500);
+    }
+  }, { passive: true });
+
+  swipeArea.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+    isSwiping = false;
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const elapsed = Date.now() - touchStartTime;
+    const activeImg = document.getElementById('lightboxActiveImg');
+
+    if (activeImg) {
+      activeImg.style.transition = 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+      activeImg.style.transform = '';
+      activeImg.style.opacity = '';
+    }
+
+    // Trigger photo navigation if horizontal distance threshold is passed
+    if (Math.abs(deltaX) > Math.abs(deltaY) && (Math.abs(deltaX) > 40 || (Math.abs(deltaX) > 25 && elapsed < 300))) {
+      if (deltaX < 0) {
+        // Swiped Left -> NEXT photo
+        setLightboxSlide(activeGalleryIndex + 1);
+      } else {
+        // Swiped Right -> PREVIOUS photo
+        setLightboxSlide(activeGalleryIndex - 1);
+      }
+    }
+  }, { passive: true });
+
+  swipeArea.addEventListener('touchcancel', () => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    const activeImg = document.getElementById('lightboxActiveImg');
+    if (activeImg) {
+      activeImg.style.transition = 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+      activeImg.style.transform = '';
+      activeImg.style.opacity = '';
+    }
+  }, { passive: true });
 }
 
 /* --------------------------------------------------------------------------
