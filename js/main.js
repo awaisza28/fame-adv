@@ -628,6 +628,97 @@ const PROJECT_GALLERIES = {
       }
     ]
   },
+  sheraton: {
+    badge: 'Sheraton Hotel Makkah • Jabal Al Kaaba (فندق شيراتون مكة - جبل الكعبة)',
+    city: 'Makkah',
+    link: 'portfolio.html?city=makkah',
+    items: [
+      {
+        img: 'assets/sheraton-hotel-makkah.jpg',
+        tag: 'Rooftop Helipad Crown Signage',
+        title: 'Sheraton Makkah Jabal Al Kaaba — Rooftop Helipad Skyline Signage (شيراتون جبل الكعبة)',
+        desc: 'Monumental illuminated structural truss rooftop sky sign mounted below the helipad canopy at Sheraton Makkah Jabal Al Kaaba, featuring high-lumen 3D channel letters and dual-ring laurel crest visible across the holy city.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG_2153.JPG',
+        tag: 'Holy City Skyline Perspective',
+        title: 'Sheraton Makkah Facade with Abraj Al-Bait Clock Tower Crescent',
+        desc: 'Breathtaking night view capturing the glowing blue-and-white 3D illuminated Sheraton Makkah building crown with the golden crescent of the iconic Makkah Royal Clock Tower in the background.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG_2156.JPG',
+        tag: 'High-Rise Architectural Elevation',
+        title: 'Sheraton Makkah Jabal Al Kaaba High-Rise Tower Night Elevation',
+        desc: 'Tower crown branding engineered with marine-grade architectural aluminium returns and frosted acrylic faces, illuminated with energy-efficient IP68 LED modules.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG_2163.JPG',
+        tag: 'Rooftop Structural Branding',
+        title: 'Helipad Substructure & 3D Illuminated Channel Letters (شيراتون)',
+        desc: 'Engineered galvanized steel space frame supporting massive bilingual fabricated letters designed to withstand high-altitude wind load and desert atmospheric conditions.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG-20170130-WA0019.jpg',
+        tag: 'Grand Portico Entrance Sign',
+        title: 'Main Hotel Entrance Illuminated Canopy Signage (شيراتون • Sheraton)',
+        desc: 'Precision face-lit architectural entry portal sign with deep cobalt blue return trim and crisp white typography welcoming international pilgrims and hotel guests.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG-20170207-WA0026.jpg',
+        tag: 'Factory Precision Fabrication',
+        title: 'Industrial Workshop Assembly of Giant 3D Channel Letters & Laurel Emblem',
+        desc: 'FAME specialized manufacturing plant floor assembly displaying the monumental scale of CNC-routed acrylic letter faces, channel returns, and the signature Sheraton S crest.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG-20170318-WA0020.jpg',
+        tag: 'Vertical Tower Facade Signage',
+        title: 'Vertical Tower Facade Monolith Lettering (Sheraton Makkah - Jabal Al Kaaba)',
+        desc: 'Architectural vertical bilingual identity running down the high-rise tower exterior facade, finished in signature cobalt blue with concealed structural anchors.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/20170430_114443.jpg',
+        tag: 'Luxury Elevator Lobby Wayfinding',
+        title: 'Executive Elevator Lobby Portal & Bronze Level Indicators (1, 2, 3, 4)',
+        desc: 'Hospitality interior wayfinding featuring fluted natural timber fins, vertical linear architectural warm LEDs, and precision-cut dark bronze elevator numbers with integrated call lanterns.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/20170130_194756.jpg',
+        tag: 'Facade Night Installation',
+        title: 'Portico Entrance Sign Illumination & Quality Commissioning',
+        desc: 'Field installation team conducting photometric testing, illumination uniformity checks, and electrical commissioning on the main hotel portico fascia.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/20170404_114141.jpg',
+        tag: 'High-Altitude Steel Truss Assembly',
+        title: 'Monumental Sheraton S-Emblem Steel Framework & Rigging',
+        desc: 'Heavy-duty engineered structural steel truss and rigging system securing the multi-meter 3D Sheraton laurel wreath crest to the hotel tower crown.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG-20170503-WA0049.jpg',
+        tag: 'ADA Compliance & Braille Signage',
+        title: 'Staff Only Tactile Architectural Door Plaque with Braille (للعاملين فقط)',
+        desc: 'Code-compliant tactile interior identification sign featuring Grade 2 Arabic and English Braille, universal pictogram, and matte anti-glare finish.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/IMG-20170409-WA0060.jpg',
+        tag: 'Guest Floor Level Identification',
+        title: 'Corridor Level 5 Dimensional Architectural Numeral',
+        desc: 'Laser-cut solid satin black dimensional numeral pin-mounted flush to textured guest floor corridor wall coverings.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/20170502_123915.jpg',
+        tag: 'Architectural Floor Numerals',
+        title: 'Guest Tower High-Level Floor Number Plaque (Floor 12)',
+        desc: 'Architectural dimensional typography engineered with bevelled perimeter edges and concealed mounting hardware for hotel guest circulation cores.'
+      },
+      {
+        img: 'assets/sheraton hotel makkah/20170514_155618.jpg',
+        tag: 'Back-of-House Wayfinding Systems',
+        title: 'Bilingual Service Access Signage Integrated into Natural Wood Paneling',
+        desc: 'High-contrast bilingual service door plaque seamlessly coordinated with architectural timber framing and interior finishes.'
+      }
+    ]
+  },
   kaia: {
     badge: 'KAIA Private Aviation & Jet Aviation Terminal • مطار الملك عبدالعزيز الدولي (صالة الطيران الخاص)',
     city: 'Jeddah',
@@ -1124,6 +1215,10 @@ function openGalleriaModal(index = 0) {
   openGalleryModal('galleria', index);
 }
 
+function openSheratonModal(index = 0) {
+  openGalleryModal('sheraton', index);
+}
+
 function openKaiaModal(index = 0) {
   openGalleryModal('kaia', index);
 }
@@ -1212,6 +1307,7 @@ function initHaramLightboxModal() {
 
   const openHaramBtns = document.querySelectorAll('.open-haram-gallery');
   const openGalleriaBtns = document.querySelectorAll('.open-galleria-gallery');
+  const openSheratonBtns = document.querySelectorAll('.open-sheraton-gallery');
   const openKaiaBtns = document.querySelectorAll('.open-kaia-gallery');
   const openDallahBtns = document.querySelectorAll('.open-dallah-gallery');
   const genericGalleryBtns = document.querySelectorAll('[data-gallery-target]');
@@ -1235,6 +1331,15 @@ function initHaramLightboxModal() {
       e.stopPropagation();
       const idx = parseInt(btn.getAttribute('data-index') || '0', 10);
       openGalleryModal('galleria', idx);
+    });
+  });
+
+  openSheratonBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const idx = parseInt(btn.getAttribute('data-index') || '0', 10);
+      openGalleryModal('sheraton', idx);
     });
   });
 
@@ -1343,6 +1448,13 @@ function initDynamicSignageMarquee() {
       title: 'The Galleria Hotel & Luxury Commercial Suites',
       location: 'Jeddah, Saudi Arabia',
       target: 'galleria',
+      index: 0
+    },
+    {
+      img: 'assets/sheraton-hotel-makkah.jpg',
+      title: 'Sheraton Hotel Makkah — Jabal Al Kaaba',
+      location: 'Makkah, Saudi Arabia',
+      target: 'sheraton',
       index: 0
     }
   ];
@@ -1567,6 +1679,7 @@ function initHeroTunnelWayfinding() {
     'assets/KAIA/IMG_9164 (2) (Medium).jpg',
     'assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg',
     'assets/galleria hotel/IMG-20230925-WA0066.jpg',
+    'assets/sheraton-hotel-makkah.jpg',
     'assets/Dallah  ALbarakah/IMG-20230925-WA0030.jpg',
     'assets/pnu/_DSC0089.JPG',
     'assets/pnu/_DSC0154.JPG',
