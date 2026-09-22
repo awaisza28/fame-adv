@@ -1176,37 +1176,221 @@ function initCardSliders() {
   });
 }
 
+const PROJECT_OVERVIEWS = {
+  pnu: {
+    eyebrow: 'Higher Education Mega-Campus • جامعة الأميرة نورة بنت عبد الرحمن',
+    title: 'Princess Nourah University Mega-Campus Wayfinding & Signage System',
+    desc: 'The world’s largest women’s university campus spans 8 million square meters, featuring monumental neoclassical Islamic sandstone architecture, 38 administrative and academic colleges, automated people mover (APM) transit stations, and a central grand dome. Our team engineered and installed an end-to-end bilingual wayfinding system, vehicular directional totems, and tactile interior signage that seamlessly guide over 60,000 students and faculty daily across the mega-campus.',
+    chips: [
+      { type: 'pin', label: 'Riyadh, Saudi Arabia' },
+      { type: 'building', label: 'Higher Education Mega-Campus' },
+      { type: 'check', label: 'Turnkey Master Wayfinding & Monoliths' },
+      { type: 'camera', label: '25 Master Photographs' }
+    ]
+  },
+  haram: {
+    eyebrow: 'Holy Sites Infrastructure • اللوحات الموسمية والمؤقتة بالحرم المكي',
+    title: 'Makkah Grand Mosque Seasonal & Temporary Signage Network',
+    desc: 'Engineered for peak Hajj and Umrah operational seasons, this rapid-deployment crowd management and temporary wayfinding network covers the Grand Mosque’s central piazzas, King Abdulaziz Gate, and major transit arteries. Built with heavy-duty weather-sealed materials, high-contrast multilingual pictograms (Arabic, English, Urdu), and reflective optical surfaces, the system guides millions of pilgrims safely and intuitively under extreme pedestrian flow.',
+    chips: [
+      { type: 'pin', label: 'Makkah, Saudi Arabia' },
+      { type: 'building', label: 'Sacred Infrastructure & Pilgrim Transit' },
+      { type: 'check', label: 'Trilingual Gate Panels & Courtyard Totems' },
+      { type: 'camera', label: '8 Field Documentation Photos' }
+    ]
+  },
+  galleria: {
+    eyebrow: 'Luxury Hospitality • فندق غاليريا جدة',
+    title: 'The Galleria Hotel Jeddah Architectural Identity & Wayfinding',
+    desc: 'Inspired by Milan’s iconic Galleria Vittorio Emanuele II, this 5-star landmark in central Jeddah features soaring neoclassical arched loggias, a luxury shopping galleria, and bespoke guest facilities. Our comprehensive interior wayfinding and identity program incorporates hand-finished brushed bronze blades, laser-etched geometric friezes, and tactile room identification plaques set into Italian marble wall panelling.',
+    chips: [
+      { type: 'pin', label: 'Jeddah, Saudi Arabia' },
+      { type: 'building', label: '5-Star Luxury Hospitality' },
+      { type: 'check', label: 'Bespoke Room Suites & Bronze Blades' },
+      { type: 'camera', label: '7 Architectural Photos' }
+    ]
+  },
+  sheraton: {
+    eyebrow: 'Skyline Hospitality • فندق شيراتون مكة - جبل الكعبة',
+    title: 'Sheraton Makkah Jabal Al Kaaba Rooftop & Corridor Signage',
+    desc: 'Perched overlooking the Holy Mosque on Jabal Al Kaaba, Sheraton Makkah required high-altitude structural branding and refined interior hospitality directionals. The project includes a monumental illuminated sky sign mounted directly beneath the rooftop helipad canopy, precision brass room identification plaques, and ADA-compliant bilingual wayfinding throughout the hotel towers.',
+    chips: [
+      { type: 'pin', label: 'Makkah, Saudi Arabia' },
+      { type: 'building', label: 'Holy City Luxury Hospitality' },
+      { type: 'check', label: 'Monumental Helipad Sky Sign & Corridors' },
+      { type: 'camera', label: '10 High-Altitude Photos' }
+    ]
+  },
+  kaia: {
+    eyebrow: 'Aviation Infrastructure • صالة الطيران الخاص بمطار الملك عبدالعزيز',
+    title: 'King Abdulaziz International Airport Private Aviation Terminal',
+    desc: 'Serving royal delegations, executive dignitaries, and private aviation traffic, the Private Aviation Terminal at KAIA features dramatic V-truss structural architecture, sweeping cantilevered canopies, and tinted reflective curtain walls. We designed, fabricated, and installed monumental granite entrance monuments, architectural perimeter totems, and VIP terminal entrance signage.',
+    chips: [
+      { type: 'pin', label: 'Jeddah, Saudi Arabia' },
+      { type: 'building', label: 'VIP Aviation & Terminals' },
+      { type: 'check', label: 'Granite Entrance Monuments & Cantilever Branding' },
+      { type: 'camera', label: '7 Architectural Photos' }
+    ]
+  },
+  dallah: {
+    eyebrow: 'Corporate Headquarters • المقر الرئيسي لشركة دله البركة',
+    title: 'Dallah Al-Barakah Investment Holding Headquarters Signage',
+    desc: 'Headquartered in Jeddah, Dallah Al-Barakah is one of the Kingdom’s premier diversified investment conglomerates. The architectural signage scope encompassed monumental exterior illuminated crown crests, perimeter campus monoliths, high-tech smart touch intercom housings, executive boardroom branding, and refined internal department wayfinding.',
+    chips: [
+      { type: 'pin', label: 'Jeddah, Saudi Arabia' },
+      { type: 'building', label: 'Corporate Headquarters & Finance' },
+      { type: 'check', label: 'Exterior Tower Crests & Smart Touch Consoles' },
+      { type: 'camera', label: '10 Corporate Signage Photos' }
+    ]
+  }
+};
+
+function getChipIconSvg(type) {
+  switch (type) {
+    case 'pin':
+      return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    case 'building':
+      return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/></svg>';
+    case 'check':
+      return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    case 'camera':
+      return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
+    default:
+      return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>';
+  }
+}
+
 function openGalleryModal(galleryKey = 'haram', index = 0) {
   const modal = document.getElementById('haramLightboxModal');
   if (!modal) return;
   
   activeGalleryKey = PROJECT_GALLERIES[galleryKey] ? galleryKey : 'haram';
   const gallery = PROJECT_GALLERIES[activeGalleryKey];
-  
-  // Re-build thumbnail strip for current gallery with async loading
-  const thumbStrip = document.getElementById('lightboxThumbStrip');
-  if (thumbStrip) {
-    thumbStrip.innerHTML = '';
-    const fragment = document.createDocumentFragment();
-    gallery.items.forEach((item, i) => {
-      const thumb = document.createElement('div');
-      thumb.className = `lightbox-thumb ${i === index ? 'active' : ''}`;
-      thumb.setAttribute('data-idx', i.toString());
-      thumb.innerHTML = `<img src="${item.img}" alt="${item.title}" loading="lazy" decoding="async">`;
-      thumb.addEventListener('click', () => {
-        setLightboxSlide(i);
-      });
-      fragment.appendChild(thumb);
-    });
-    thumbStrip.appendChild(fragment);
-  }
+  if (!gallery || !gallery.items || gallery.items.length === 0) return;
 
-  // Update modal badge & total
+  const total = gallery.items.length;
+  activeGalleryIndex = Math.min(Math.max(0, index), total - 1);
+
+  // Update modal title & total count in header
   const badgeEl = document.getElementById('lightboxModalBadge');
-  if (badgeEl) badgeEl.textContent = gallery.badge;
+  if (badgeEl) badgeEl.textContent = gallery.badge || 'Project Gallery';
 
   const totalEl = document.getElementById('lightboxTotalCount');
-  if (totalEl) totalEl.textContent = gallery.items.length.toString();
+  if (totalEl) totalEl.textContent = total.toString();
+
+  // 1. Setup Full-Screen Project Cover Hero (shown first at the top)
+  const coverItem = gallery.items[0];
+  const heroImg = document.getElementById('lightboxHeroImg');
+  const heroTitle = document.getElementById('lightboxHeroTitle');
+  const heroSubtitle = document.getElementById('lightboxHeroSubtitle');
+
+  if (heroImg && coverItem) {
+    heroImg.src = coverItem.img;
+    heroImg.alt = coverItem.title || gallery.badge || 'Project Cover';
+  }
+
+  // Derive elegant title & subtitle matching the reference screenshot
+  let displayTitle = '';
+  let displaySubtitle = '';
+
+  if (galleryKey === 'pnu') {
+    displayTitle = 'Princess Nourah University Mega-Campus';
+    displaySubtitle = 'جامعة الأميرة نورة بنت عبد الرحمن • Riyadh, Saudi Arabia';
+  } else if (galleryKey === 'haram') {
+    displayTitle = 'Grand Mosque Piazzas & Corridors';
+    displaySubtitle = 'اللوحات الموسمية والمؤقتة بالحرم المكي • Makkah, Saudi Arabia';
+  } else if (galleryKey === 'galleria') {
+    displayTitle = 'The Galleria Hotel Jeddah';
+    displaySubtitle = 'فندق غاليريا جدة • Luxury Hospitality Signage';
+  } else if (galleryKey === 'sheraton') {
+    displayTitle = 'Sheraton Hotel Makkah — Jabal Al Kaaba';
+    displaySubtitle = 'فندق شيراتون مكة - جبل الكعبة • Makkah, Saudi Arabia';
+  } else if (galleryKey === 'kaia') {
+    displayTitle = 'KAIA Private Aviation Terminal';
+    displaySubtitle = 'صالة الطيران الخاص بمطار الملك عبدالعزيز الدولي • Jeddah, Saudi Arabia';
+  } else if (galleryKey === 'dallah') {
+    displayTitle = 'Dallah Al-Barakah Investment Holding HQ';
+    displaySubtitle = 'المقر الرئيسي لشركة دله البركة • Jeddah, Saudi Arabia';
+  } else {
+    displayTitle = coverItem ? coverItem.title : (gallery.badge || 'Project Showcase');
+    displaySubtitle = gallery.city ? `${gallery.city}, Saudi Arabia` : 'Architectural Signage & Wayfinding';
+  }
+
+  if (heroTitle) heroTitle.textContent = displayTitle;
+  if (heroSubtitle) heroSubtitle.textContent = displaySubtitle;
+
+  // 1.5 Setup Project Overview & Content Section (Between Cover & Images)
+  const introEyebrow = document.getElementById('lightboxIntroEyebrow');
+  const introTitle = document.getElementById('lightboxIntroTitle');
+  const introDesc = document.getElementById('lightboxIntroDesc');
+  const introChips = document.getElementById('lightboxIntroChips');
+
+  const overview = PROJECT_OVERVIEWS[galleryKey] || {
+    eyebrow: 'Project Overview • نظرة عامة على المشروع',
+    title: displayTitle,
+    desc: coverItem && coverItem.desc ? coverItem.desc : 'Detailed architectural overview and turnkey signage execution.',
+    chips: [
+      { type: 'pin', label: gallery.city ? `${gallery.city}, Saudi Arabia` : 'Saudi Arabia' },
+      { type: 'building', label: 'Architectural Signage & Wayfinding' },
+      { type: 'check', label: 'Turnkey Design & Implementation' },
+      { type: 'camera', label: `${total} Project Photographs` }
+    ]
+  };
+
+  if (introEyebrow) introEyebrow.textContent = overview.eyebrow;
+  if (introTitle) introTitle.textContent = overview.title;
+  if (introDesc) introDesc.textContent = overview.desc;
+
+  if (introChips) {
+    introChips.innerHTML = '';
+    const chipsList = overview.chips.map(chip => {
+      const label = chip.type === 'camera' ? `${total} Project Photographs` : chip.label;
+      return `<div class="lightbox-intro-chip">${getChipIconSvg(chip.type)}<span>${label}</span></div>`;
+    });
+    introChips.innerHTML = chipsList.join('');
+  }
+
+  // 2. Populate uncropped project images into 2 balanced columns below the cover
+  const feedContainer = document.getElementById('lightboxFeedContainer');
+  const feedScroll = document.getElementById('lightboxFeedScroll');
+  
+  if (feedContainer) {
+    feedContainer.innerHTML = '';
+
+    const colLeft = document.createElement('div');
+    colLeft.className = 'lightbox-collage-col';
+
+    const colRight = document.createElement('div');
+    colRight.className = 'lightbox-collage-col';
+
+    // Show gallery photos below the hero cover
+    const collageItems = gallery.items.length > 1 ? gallery.items.slice(1) : gallery.items;
+
+    collageItems.forEach((item, idx) => {
+      const originalIdx = gallery.items.length > 1 ? idx + 1 : idx;
+      const collageItem = document.createElement('div');
+      collageItem.className = 'lightbox-collage-item';
+      collageItem.id = `collage-item-${originalIdx}`;
+
+      const isPriority = idx < 6;
+
+      collageItem.innerHTML = `
+        <img src="${item.img}" 
+             alt="${item.title ? item.title.replace(/"/g, '&quot;') : 'Project Photograph'}" 
+             class="lightbox-collage-img" 
+             ${isPriority ? 'loading="eager" decoding="sync"' : 'loading="lazy" decoding="async"'}>
+      `;
+
+      if (idx % 2 === 0) {
+        colLeft.appendChild(collageItem);
+      } else {
+        colRight.appendChild(collageItem);
+      }
+    });
+
+    feedContainer.appendChild(colLeft);
+    feedContainer.appendChild(colRight);
+  }
 
   // Deactivate follower so it won't float over the open modal
   const follower = document.getElementById('sfsCursorFollower');
@@ -1218,7 +1402,11 @@ function openGalleryModal(galleryKey = 'haram', index = 0) {
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('modal-open');
-  setLightboxSlide(index);
+
+  // Always reset scroll to 0 so the user sees the Project Cover first on click!
+  if (feedScroll) {
+    feedScroll.scrollTop = 0;
+  }
 }
 
 function openHaramModal(index = 0) {
@@ -1249,71 +1437,11 @@ function closeHaramModal() {
   document.body.classList.remove('modal-open');
 }
 
-function preloadAdjacentImages() {
-  const gallery = PROJECT_GALLERIES[activeGalleryKey] || PROJECT_GALLERIES.haram;
-  const total = gallery.items.length;
-  if (total <= 1) return;
-  const nextIdx = (activeGalleryIndex + 1) % total;
-  const prevIdx = (activeGalleryIndex - 1 + total) % total;
-  const nextImg = new Image();
-  nextImg.src = gallery.items[nextIdx].img;
-  const prevImg = new Image();
-  prevImg.src = gallery.items[prevIdx].img;
-}
-
-let thumbScrollRAF = null;
-
 function setLightboxSlide(idx) {
-  const modal = document.getElementById('haramLightboxModal');
-  if (!modal) return;
-
-  const gallery = PROJECT_GALLERIES[activeGalleryKey] || PROJECT_GALLERIES.haram;
-  const total = gallery.items.length;
-  activeGalleryIndex = (idx + total) % total;
-  const current = gallery.items[activeGalleryIndex];
-
-  const imgEl = document.getElementById('lightboxActiveImg');
-  const counterEl = document.getElementById('lightboxCurrentIdx');
-  const totalEl = document.getElementById('lightboxTotalCount');
-  const tagEl = document.getElementById('lightboxTag');
-  const titleEl = document.getElementById('lightboxTitle');
-  const descEl = document.getElementById('lightboxDesc');
-  const thumbs = document.querySelectorAll('.lightbox-thumb');
-
-  // Instant update of image and metadata with zero artificial lag
-  if (imgEl && imgEl.getAttribute('src') !== current.img) {
-    imgEl.src = current.img;
-    imgEl.alt = current.title;
+  const targetItem = document.getElementById(`collage-item-${idx}`);
+  if (targetItem) {
+    targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-
-  if (counterEl) counterEl.textContent = (activeGalleryIndex + 1).toString();
-  if (totalEl) totalEl.textContent = total.toString();
-  if (tagEl) tagEl.textContent = current.tag;
-  if (titleEl) titleEl.textContent = current.title;
-  if (descEl) descEl.textContent = current.desc;
-
-  thumbs.forEach((thumb, i) => {
-    thumb.classList.toggle('active', i === activeGalleryIndex);
-  });
-
-  // Always keep highlighted active thumbnail in the exact horizontal center
-  if (thumbScrollRAF) cancelAnimationFrame(thumbScrollRAF);
-  thumbScrollRAF = requestAnimationFrame(() => {
-    const activeThumb = thumbs[activeGalleryIndex];
-    const thumbStrip = document.getElementById('lightboxThumbStrip');
-    if (activeThumb && thumbStrip && thumbStrip.clientWidth > 0) {
-      const stripWidth = thumbStrip.clientWidth;
-      const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
-      const targetLeft = thumbCenter - (stripWidth / 2);
-      thumbStrip.scrollTo({
-        left: Math.max(0, targetLeft),
-        behavior: 'smooth'
-      });
-    }
-  });
-
-  // Preload adjacent images in browser cache for instantaneous back/forth navigation
-  preloadAdjacentImages();
 }
 
 function initHaramLightboxModal() {
@@ -1325,11 +1453,10 @@ function initHaramLightboxModal() {
   const openSheratonBtns = document.querySelectorAll('.open-sheraton-gallery');
   const openKaiaBtns = document.querySelectorAll('.open-kaia-gallery');
   const openDallahBtns = document.querySelectorAll('.open-dallah-gallery');
-  const genericGalleryBtns = document.querySelectorAll('[data-gallery-target]');
   const closeBtn = document.getElementById('lightboxCloseBtn');
   const backdrop = modal.querySelector('.lightbox-backdrop');
-  const prevBtn = document.getElementById('lightboxPrevBtn');
-  const nextBtn = document.getElementById('lightboxNextBtn');
+  const feedScroll = document.getElementById('lightboxFeedScroll');
+  const scrollTopBtn = document.getElementById('lightboxScrollTopBtn');
 
   openHaramBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -1394,112 +1521,28 @@ function initHaramLightboxModal() {
   if (closeBtn) closeBtn.addEventListener('click', closeHaramModal);
   if (backdrop) backdrop.addEventListener('click', closeHaramModal);
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setLightboxSlide(activeGalleryIndex - 1);
+  // Scroll-to-top button handler
+  if (feedScroll && scrollTopBtn) {
+    feedScroll.addEventListener('scroll', () => {
+      if (feedScroll.scrollTop > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+      feedScroll.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setLightboxSlide(activeGalleryIndex + 1);
-    });
-  }
-
-  // Keyboard navigation
+  // Keyboard accessibility
   window.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active')) return;
     if (e.key === 'Escape') {
       closeHaramModal();
-    } else if (e.key === 'ArrowLeft') {
-      setLightboxSlide(activeGalleryIndex - 1);
-    } else if (e.key === 'ArrowRight') {
-      setLightboxSlide(activeGalleryIndex + 1);
     }
   });
-
-  // Touch swipe navigation with hands for mobile screens
-  const swipeArea = modal.querySelector('.lightbox-container') || modal;
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchEndX = 0;
-  let touchEndY = 0;
-  let touchStartTime = 0;
-  let isSwiping = false;
-
-  swipeArea.addEventListener('touchstart', (e) => {
-    if (e.target.closest('#lightboxCloseBtn, .lightbox-thumb-strip, .lightbox-thumb, button, a')) return;
-    if (!e.touches || e.touches.length === 0) return;
-
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    touchEndX = touchStartX;
-    touchEndY = touchStartY;
-    touchStartTime = Date.now();
-    isSwiping = true;
-
-    const activeImg = document.getElementById('lightboxActiveImg');
-    if (activeImg) {
-      activeImg.style.transition = 'none';
-    }
-  }, { passive: true });
-
-  swipeArea.addEventListener('touchmove', (e) => {
-    if (!isSwiping || !e.touches || e.touches.length === 0) return;
-
-    touchEndX = e.touches[0].clientX;
-    touchEndY = e.touches[0].clientY;
-
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-    const activeImg = document.getElementById('lightboxActiveImg');
-
-    // Give real-time visual swipe feedback when horizontal gesture is dominant
-    if (Math.abs(deltaX) > Math.abs(deltaY) && activeImg) {
-      activeImg.style.transform = `translateX(${deltaX * 0.75}px) scale(0.985)`;
-      activeImg.style.opacity = Math.max(0.45, 1 - Math.abs(deltaX) / 500);
-    }
-  }, { passive: true });
-
-  swipeArea.addEventListener('touchend', (e) => {
-    if (!isSwiping) return;
-    isSwiping = false;
-
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-    const elapsed = Date.now() - touchStartTime;
-    const activeImg = document.getElementById('lightboxActiveImg');
-
-    if (activeImg) {
-      activeImg.style.transition = 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
-      activeImg.style.transform = '';
-      activeImg.style.opacity = '';
-    }
-
-    // Trigger photo navigation if horizontal distance threshold is passed
-    if (Math.abs(deltaX) > Math.abs(deltaY) && (Math.abs(deltaX) > 40 || (Math.abs(deltaX) > 25 && elapsed < 300))) {
-      if (deltaX < 0) {
-        // Swiped Left -> NEXT photo
-        setLightboxSlide(activeGalleryIndex + 1);
-      } else {
-        // Swiped Right -> PREVIOUS photo
-        setLightboxSlide(activeGalleryIndex - 1);
-      }
-    }
-  }, { passive: true });
-
-  swipeArea.addEventListener('touchcancel', () => {
-    if (!isSwiping) return;
-    isSwiping = false;
-    const activeImg = document.getElementById('lightboxActiveImg');
-    if (activeImg) {
-      activeImg.style.transition = 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
-      activeImg.style.transform = '';
-      activeImg.style.opacity = '';
-    }
-  }, { passive: true });
 }
 
 /* --------------------------------------------------------------------------

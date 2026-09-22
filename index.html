@@ -6,7 +6,7 @@
   <title>FAME Advertising Company — Digital Growth & Strategic Brand Impact</title>
   <meta name="description" content="FAME is a premier advertising and digital growth agency crafting high-converting omnichannel campaigns, award-winning brand identities, and hyper-scaled performance marketing.">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="stylesheet" href="css/style.css?v=7.9">
+  <link rel="stylesheet" href="css/style.css?v=8.4">
 </head>
 <body>
 
@@ -398,38 +398,62 @@
   </footer>
   </div>
 
-  <!-- ARCHITECTURAL LIGHTBOX MODAL -->
-  <div class="haram-lightbox-modal" id="haramLightboxModal" aria-hidden="true" role="dialog">
+  <!-- WHITE BACKGROUND PHOTO COLLAGE MODAL -->
+  <div class="haram-lightbox-modal" id="haramLightboxModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="lightbox-backdrop"></div>
     <div class="lightbox-container">
-      <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close Gallery Modal">✕</button>
       
-      <div class="lightbox-header-bar">
-        <div class="lightbox-counter"><span id="lightboxCurrentIdx">1</span> / <span id="lightboxTotalCount">8</span> Photos</div>
-        <div class="lightbox-badge" id="lightboxModalBadge">Grand Mosque • Haram Temporary Signage</div>
-      </div>
+      <!-- Minimalist Top Header Bar on White Canvas -->
+      <header class="lightbox-header-bar">
+        <div class="lightbox-header-left">
+          <span class="lightbox-title-eyebrow" id="lightboxModalBadge">Project Gallery</span>
+          <span class="lightbox-counter">(<span id="lightboxTotalCount">0</span> Photos)</span>
+        </div>
+        <div class="lightbox-header-right">
+          <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close Gallery">✕</button>
+        </div>
+      </header>
 
-      <div class="lightbox-main-view">
-        <button type="button" class="lightbox-nav-btn prev-btn" id="lightboxPrevBtn" aria-label="Previous image">❮</button>
+      <!-- Scrollable Collage Grid of Images -->
+      <div class="lightbox-feed-scroll" id="lightboxFeedScroll" tabindex="0">
         
-        <div class="lightbox-image-stage">
-          <img src="assets/haram-seasonal/haram-abdulaziz-ajyad-gate.jpg" id="lightboxActiveImg" alt="Signage Gallery Image" class="lightbox-img">
+        <!-- Full-Screen Project Cover Hero (Shown First on Click) -->
+        <div class="lightbox-project-hero" id="lightboxProjectHero">
+          <div class="lightbox-hero-img-wrap">
+            <img src="" class="lightbox-hero-img" id="lightboxHeroImg" alt="Project Cover" loading="eager" decoding="sync">
+            <div class="lightbox-hero-gradient"></div>
+            <div class="lightbox-hero-caption">
+              <h1 class="lightbox-hero-title" id="lightboxHeroTitle">Project Name</h1>
+              <div class="lightbox-hero-subtitle" id="lightboxHeroSubtitle">Explore Gallery ↓</div>
+            </div>
+          </div>
         </div>
 
-        <button type="button" class="lightbox-nav-btn next-btn" id="lightboxNextBtn" aria-label="Next image">❯</button>
+        <!-- Project Overview & Content Section (Between Cover and Collage) -->
+        <section class="lightbox-project-intro" id="lightboxProjectIntro">
+          <div class="lightbox-intro-inner">
+            <div class="lightbox-intro-eyebrow" id="lightboxIntroEyebrow">Project Overview • نظرة عامة على المشروع</div>
+            <h2 class="lightbox-intro-title" id="lightboxIntroTitle">Project Name</h2>
+            <p class="lightbox-intro-desc" id="lightboxIntroDesc">Detailed architectural overview and project execution summary.</p>
+            <div class="lightbox-intro-meta-chips" id="lightboxIntroChips">
+              <!-- Location, scope, and photograph count chips -->
+            </div>
+          </div>
+        </section>
+
+        <div class="lightbox-feed-container" id="lightboxFeedContainer">
+          <!-- Dynamically populated 2-column collage images -->
+        </div>
       </div>
 
-      <!-- Thumbnail Selector Navigation Bar Directly Downside of Images -->
-      <div class="lightbox-thumb-strip" id="lightboxThumbStrip"></div>
+      <!-- Quick Scroll to Top Button -->
+      <button type="button" class="lightbox-scroll-top-btn" id="lightboxScrollTopBtn" aria-label="Scroll to top of gallery">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+      </button>
 
-      <div class="lightbox-info-pane">
-        <div class="lightbox-tag" id="lightboxTag">Courtyard Pillar Totems</div>
-        <h3 class="lightbox-title" id="lightboxTitle">King Abdul Aziz Gate (No. 01) & Ajyad Gate (No. 03)</h3>
-        <p class="lightbox-desc" id="lightboxDesc">Directional monolith pillars with compliance and prohibition pictograms in the southern piazza.</p>
-      </div>
     </div>
   </div>
 
-  <script src="js/main.js?v=7.9"></script>
+  <script src="js/main.js?v=8.4"></script>
 </body>
 </html>
